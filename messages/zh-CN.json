@@ -652,6 +652,8 @@
   "publicCollection": {
     "eyebrow": "文档合集",
     "empty": "该合集暂无文档。",
-    "back": "返回「{title}」"
+    "back": "返回「{title}」",
+    "all": "全部文档",
+    "categories": "分类"
   }
 }

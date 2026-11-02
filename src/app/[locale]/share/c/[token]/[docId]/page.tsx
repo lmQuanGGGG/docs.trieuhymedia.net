@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
+import { CollectionFrame } from "@/components/share/collection-frame";
 import { PublicDocView } from "@/components/share/public-doc-view";
 import { PublicShell, PublicUnavailable } from "@/components/share/public-shell";
 import { ShareUnlockForm } from "@/components/share/share-unlock-form";
@@ -31,13 +32,15 @@ export default async function CollectionDocPage({ params }: PageProps<"/[locale]
       {result.state === "locked" ? (
         <ShareUnlockForm unlockUrl={`/api/share/c/${encodeURIComponent(token)}/unlock`} />
       ) : result.state === "ok" && doc ? (
-        <PublicDocView
-          locale={locale}
-          document={doc}
-          owner={result.data.owner}
-          allowDownload={result.data.allowDownload}
-          back={{ href: `/share/c/${token}`, label: t("publicCollection.back", { title: result.data.title }) }}
-        />
+        <CollectionFrame locale={locale} token={token} documents={result.data.documents} active={doc.category}>
+          <PublicDocView
+            locale={locale}
+            document={doc}
+            owner={result.data.owner}
+            allowDownload={result.data.allowDownload}
+            back={{ href: `/share/c/${token}`, label: t("publicCollection.back", { title: result.data.title }) }}
+          />
+        </CollectionFrame>
       ) : (
         <PublicUnavailable locale={locale} />
       )}

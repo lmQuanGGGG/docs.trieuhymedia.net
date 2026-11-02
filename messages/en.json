@@ -652,6 +652,8 @@
   "publicCollection": {
     "eyebrow": "Document collection",
     "empty": "This collection has no documents yet.",
-    "back": "Back to “{title}”"
+    "back": "Back to “{title}”",
+    "all": "All documents",
+    "categories": "Categories"
   }
 }

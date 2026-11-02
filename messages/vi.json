@@ -652,6 +652,8 @@
   "publicCollection": {
     "eyebrow": "Bộ tài liệu",
     "empty": "Bộ này chưa có tài liệu nào.",
-    "back": "Quay lại “{title}”"
+    "back": "Quay lại “{title}”",
+    "all": "Tất cả tài liệu",
+    "categories": "Danh mục"
   }
 }
