@@ -25,6 +25,7 @@ const topLevel: Record<string, NavLabelKey> = {
   recent: "recent",
   starred: "starred",
   shared: "shared",
+  collections: "collections",
   team: "team",
   activity: "activity",
   settings: "settings",

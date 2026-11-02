@@ -1,9 +1,10 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Upload } from "lucide-react";
 import type { Icon3DName } from "@/components/icons3d";
 import { useTranslations } from "next-intl";
 import type { CSSProperties } from "react";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DocumentTable } from "@/components/documents/document-table";
 import { TableSkeleton } from "@/components/documents/document-skeletons";
@@ -60,8 +61,12 @@ export function OverviewView() {
     { key: "share", dialog: { kind: "share" }, icon: "share" },
   ];
 
-  const recent = [...documents].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 6);
-  const featured = documents.filter((d) => d.starred).slice(0, 5);
+  const byUpdated = [...documents].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+  const recent = byUpdated.slice(0, 6);
+  // Ưu tiên tài liệu gắn sao; nếu chưa gắn sao tài liệu nào thì dùng tài liệu mới cập nhật
+  const starred = byUpdated.filter((d) => d.starred);
+  const showStarred = starred.length > 0;
+  const featured = (showStarred ? starred : byUpdated).slice(0, 5);
   const firstName = currentUser?.name.split(" ").at(-1) ?? "";
 
   return (
@@ -96,8 +101,34 @@ export function OverviewView() {
             </div>
           </div>
           <div className="relative min-w-0">
-            <p className="mb-2 text-xs font-medium text-muted-foreground">{t("overview.heroPinned")}</p>
-            {ready ? <FeaturedStack documents={featured} /> : <Skeleton className="h-[244px] w-[86%] rounded-[22px]" />}
+            {!ready ? (
+              <>
+                <Skeleton className="mb-2 h-4 w-28" />
+                <Skeleton className="h-[244px] w-[86%] rounded-[22px]" />
+              </>
+            ) : featured.length > 0 ? (
+              <>
+                <p className="mb-2 text-xs font-medium text-muted-foreground">
+                  {t(showStarred ? "overview.heroPinned" : "overview.heroRecent")}
+                </p>
+                <FeaturedStack documents={featured} />
+              </>
+            ) : (
+              // Trạng thái trống: chưa có tài liệu nào trong không gian làm việc
+              <div className="flex min-h-[228px] flex-col items-center justify-center gap-3 rounded-[22px] border border-dashed border-border bg-muted/40 p-6 text-center sm:min-h-[244px]">
+                <IconTile name="doc-new" size="lg" />
+                <div>
+                  <p className="text-[15px] font-semibold tracking-tight">{t("overview.heroEmptyTitle")}</p>
+                  <p className="mt-1 text-sm text-muted-foreground text-pretty">{t("overview.heroEmptyHint")}</p>
+                </div>
+                {canCreate ? (
+                  <Button className="mt-1" onClick={() => open({ kind: "upload" })}>
+                    <Upload data-icon="inline-start" />
+                    {t("overview.actions.upload")}
+                  </Button>
+                ) : null}
+              </div>
+            )}
           </div>
         </div>
       </section>

@@ -135,3 +135,24 @@ export interface ShareSettings {
   expiresAt: string | null;
   views: number;
 }
+
+export type CollectionMode = "all" | "selected";
+
+export interface ShareCollectionItem {
+  id: string;
+  token: string;
+  title: string;
+  description: string;
+  mode: CollectionMode;
+  includePrivate: boolean;
+  documentIds: string[];
+  /** Số tài liệu đang hiển thị trong bộ (đã tính theo chế độ) */
+  documentCount: number;
+  allowDownload: boolean;
+  passwordProtected: boolean;
+  expiresAt: string | null;
+  isActive: boolean;
+  views: number;
+  createdById: string;
+  updatedAt: string;
+}

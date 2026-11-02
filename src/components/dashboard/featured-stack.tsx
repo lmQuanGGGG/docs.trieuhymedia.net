@@ -24,6 +24,10 @@ export function FeaturedStack({ documents }: { documents: DocumentItem[] }) {
   const count = documents.length;
   if (count === 0) return null;
 
+  // Chỉ 1 tài liệu: một card duy nhất, không lớp phía sau, không điều hướng
+  const single = count === 1;
+  // Giữ chỉ số hợp lệ khi danh sách thay đổi (vd. bỏ gắn sao)
+  const active = index % count;
   const go = (dir: 1 | -1) => setIndex((i) => (i + dir + count) % count);
 
   const onPointerDown = (e: PointerEvent) => {
@@ -40,13 +44,13 @@ export function FeaturedStack({ documents }: { documents: DocumentItem[] }) {
     <div className="flex flex-col gap-3">
       <div
         className="relative h-[228px] touch-pan-y select-none [perspective:1100px] sm:h-[244px]"
-        onPointerDown={onPointerDown}
-        onPointerUp={onPointerUp}
-        onPointerCancel={() => (startX.current = null)}
-        aria-roledescription="carousel"
+        onPointerDown={single ? undefined : onPointerDown}
+        onPointerUp={single ? undefined : onPointerUp}
+        onPointerCancel={single ? undefined : () => (startX.current = null)}
+        aria-roledescription={single ? undefined : "carousel"}
       >
         {documents.map((d, i) => {
-          const pos = (i - index + count) % count; // 0 = trước nhất
+          const pos = (i - active + count) % count; // 0 = trước nhất
           const hidden = pos > 2;
           return (
             <Link
@@ -63,7 +67,8 @@ export function FeaturedStack({ documents }: { documents: DocumentItem[] }) {
                 } as CSSProperties
               }
               className={cn(
-                "absolute inset-y-2 left-0 w-[86%] origin-left overflow-hidden rounded-[20px] bg-card p-5 shadow-lift transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] sm:w-[82%]",
+                "absolute inset-y-2 left-0 origin-left overflow-hidden rounded-[20px] bg-card p-5 shadow-lift transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]",
+                single ? "w-full" : "w-[86%] sm:w-[82%]",
                 pos > 0 && "shadow-soft",
                 hidden && "pointer-events-none",
               )}
@@ -86,21 +91,23 @@ export function FeaturedStack({ documents }: { documents: DocumentItem[] }) {
           );
         })}
       </div>
-      <div className="flex items-center justify-between">
-        <div className="flex gap-1.5" aria-hidden>
-          {documents.map((d, i) => (
-            <span key={d.id} className={cn("h-1.5 rounded-full bg-foreground/15 transition-all", i === index ? "w-5 bg-brand" : "w-1.5")} />
-          ))}
+      {single ? null : (
+        <div className="flex items-center justify-between">
+          <div className="flex gap-1.5" aria-hidden>
+            {documents.map((d, i) => (
+              <span key={d.id} className={cn("h-1.5 rounded-full bg-foreground/15 transition-all", i === active ? "w-5 bg-brand" : "w-1.5")} />
+            ))}
+          </div>
+          <div className="flex gap-1">
+            <Button variant="ghost" size="icon-sm" onClick={() => go(-1)} aria-label={t("common.previous")}>
+              <ChevronLeft />
+            </Button>
+            <Button variant="ghost" size="icon-sm" onClick={() => go(1)} aria-label={t("common.next")}>
+              <ChevronRight />
+            </Button>
+          </div>
         </div>
-        <div className="flex gap-1">
-          <Button variant="ghost" size="icon-sm" onClick={() => go(-1)} aria-label={t("common.previous")}>
-            <ChevronLeft />
-          </Button>
-          <Button variant="ghost" size="icon-sm" onClick={() => go(1)} aria-label={t("common.next")}>
-            <ChevronRight />
-          </Button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

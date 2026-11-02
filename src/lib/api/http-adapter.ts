@@ -109,6 +109,12 @@ export const httpApi: DocsApi = {
     request(`/api/documents/${documentId}/variants/${encodeURIComponent(locale)}`, { method: "DELETE" }),
   getShare: (documentId) => request(`/api/documents/${documentId}/share`),
   updateShare: (documentId, input) => request(`/api/documents/${documentId}/share`, { method: "PUT", json: input }),
+  listCollections: () => request("/api/collections"),
+  createCollection: (input) => request("/api/collections", { method: "POST", json: input }),
+  updateCollection: (id, input) => request(`/api/collections/${id}`, { method: "PATCH", json: input }),
+  deleteCollection: async (id) => {
+    await request(`/api/collections/${id}`, { method: "DELETE" });
+  },
   login: async (email, password) => {
     await request("/api/auth/login", { method: "POST", json: { email, password } });
   },

@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 /** Form mở khoá link chia sẻ có mật khẩu; server đặt cookie rồi trang được render lại */
-export function ShareUnlockForm({ token }: { token: string }) {
+export function ShareUnlockForm({ unlockUrl }: { unlockUrl: string }) {
   const t = useTranslations("publicLock");
   const router = useRouter();
   const [password, setPassword] = useState("");
@@ -20,7 +20,7 @@ export function ShareUnlockForm({ token }: { token: string }) {
     e.preventDefault();
     setPending(true);
     setError(false);
-    const res = await fetch(`/api/share/${encodeURIComponent(token)}/unlock`, {
+    const res = await fetch(unlockUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password }),

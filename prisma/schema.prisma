@@ -120,6 +120,7 @@ model Member {
   createdVersions   DocumentVersion[] @relation("VersionCreator")
   createdShareLinks ShareLink[]       @relation("ShareLinkCreator")
   sentInvitations   Invitation[]      @relation("InvitationSender")
+  shareCollections  ShareCollection[]
   stars             DocumentStar[]
   documentAccesses  DocumentAccess[]
   activities        ActivityLog[]
@@ -204,6 +205,7 @@ model Document {
   stars      DocumentStar[]
   accesses   DocumentAccess[]
   shareLinks ShareLink[]
+  collectionItems ShareCollectionItem[]
   activities ActivityLog[]
 
   @@index([category, updatedAt(sort: Desc)])
@@ -337,4 +339,50 @@ model ActivityLog {
   @@index([documentId, createdAt(sort: Desc)])
   @@index([actorId, createdAt(sort: Desc)])
   @@map("activity_logs")
+}
+
+// ─── Bộ chia sẻ (một link chứa nhiều tài liệu) ──────────────────────────────
+
+enum CollectionMode {
+  /// Mọi tài liệu người tạo sở hữu, tự cập nhật khi có tài liệu mới
+  ALL_MINE
+  /// Danh sách tài liệu chọn tay
+  SELECTED
+}
+
+model ShareCollection {
+  id             String         @id @default(cuid())
+  token          String         @unique
+  title          String
+  description    String?
+  mode           CollectionMode @default(SELECTED)
+  /// Chế độ ALL_MINE: có kèm tài liệu riêng tư không
+  includePrivate Boolean        @default(false)
+  passwordHash   String?
+  expiresAt      DateTime?
+  allowDownload  Boolean        @default(false)
+  isActive       Boolean        @default(true)
+  views          Int            @default(0)
+  createdById    String
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  createdBy Member                @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  items     ShareCollectionItem[]
+
+  @@index([createdById])
+  @@map("share_collections")
+}
+
+model ShareCollectionItem {
+  collectionId String
+  documentId   String
+  position     Int    @default(0)
+
+  collection ShareCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  document   Document        @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@id([collectionId, documentId])
+  @@index([documentId])
+  @@map("share_collection_items")
 }

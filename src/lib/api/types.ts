@@ -1,5 +1,7 @@
 import type {
   ActivityItem,
+  CollectionMode,
+  ShareCollectionItem,
   Brand,
   DocumentItem,
   Folder,
@@ -17,6 +19,19 @@ export interface WorkspaceSnapshot {
   members: Member[];
   activities: ActivityItem[];
   notifications: NotificationItem[];
+}
+
+export interface CollectionInput {
+  title: string;
+  description?: string;
+  mode: CollectionMode;
+  includePrivate: boolean;
+  documentIds: string[];
+  allowDownload: boolean;
+  isActive: boolean;
+  password?: string;
+  expiresAt: string | null;
+  renew?: boolean;
 }
 
 export interface ShareInput {
@@ -54,6 +69,10 @@ export interface DocsApi {
   deleteVariant(documentId: string, locale: string): Promise<DocumentItem>;
   getShare(documentId: string): Promise<ShareSettings | null>;
   updateShare(documentId: string, input: ShareInput): Promise<ShareSettings>;
+  listCollections(): Promise<ShareCollectionItem[]>;
+  createCollection(input: CollectionInput): Promise<ShareCollectionItem>;
+  updateCollection(id: string, input: CollectionInput): Promise<ShareCollectionItem>;
+  deleteCollection(id: string): Promise<void>;
   login(email: string, password: string): Promise<void>;
   logout(): Promise<void>;
 }

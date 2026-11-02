@@ -2,6 +2,7 @@ import {
   Activity,
   Clock3,
   FolderOpen,
+  Library,
   LayoutGrid,
   type LucideIcon,
   Settings,
@@ -17,6 +18,7 @@ export type NavLabelKey =
   | "recent"
   | "starred"
   | "shared"
+  | "collections"
   | "team"
   | "activity"
   | "settings";
@@ -33,6 +35,7 @@ export const workspaceNav: NavItem[] = [
   { href: "/recent", icon: Clock3, labelKey: "recent" },
   { href: "/starred", icon: Star, labelKey: "starred" },
   { href: "/shared", icon: UsersRound, labelKey: "shared" },
+  { href: "/collections", icon: Library, labelKey: "collections" },
 ];
 
 export const categoryNav = categories.map((c) => ({

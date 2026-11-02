@@ -33,7 +33,7 @@ function slugify(title: string): string {
 }
 
 /** Link dạng ten-tai-lieu-k7m2qx: dễ đọc nhưng không đoán được nhờ 6 ký tự ngẫu nhiên */
-async function newToken(title: string): Promise<string> {
+export async function newToken(title: string): Promise<string> {
   for (;;) {
     const suffix = Array.from(randomBytes(6), (b) => ALPHABET[b % ALPHABET.length]).join("");
     const slug = slugify(title);

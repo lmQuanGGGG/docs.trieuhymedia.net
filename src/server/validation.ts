@@ -39,3 +39,15 @@ export const shareBody = z.object({
   renew: z.boolean().optional(),
 });
 export const unlockBody = z.object({ password: z.string().min(1).max(100) });
+export const collectionBody = z.object({
+  title: z.string().trim().min(3).max(120),
+  description: z.string().trim().max(500).optional(),
+  mode: z.enum(["all", "selected"]),
+  includePrivate: z.boolean(),
+  documentIds: z.array(z.string().min(1)).max(500),
+  allowDownload: z.boolean(),
+  isActive: z.boolean(),
+  password: z.string().max(100).optional(),
+  expiresAt: z.iso.datetime({ offset: true }).nullable(),
+  renew: z.boolean().optional(),
+});
