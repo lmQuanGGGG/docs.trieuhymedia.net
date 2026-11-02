@@ -66,7 +66,7 @@ function ShareSettingsForm({ documentId }: { documentId: string }) {
 
   const shareUrl = settings?.token ? `${SITE_URL}/${locale}/share/${settings.token}` : "";
 
-  const save = async () => {
+  const save = async (renew = false) => {
     setSaving(true);
     try {
       const next = await updateShare(documentId, {
@@ -75,11 +75,12 @@ function ShareSettingsForm({ documentId }: { documentId: string }) {
         password: removePassword ? "" : password || undefined,
         // Hết hạn vào cuối ngày đã chọn, theo giờ Việt Nam
         expiresAt: expiry ? `${expiry}T23:59:59+07:00` : null,
+        renew,
       });
       setSettings(next);
       setPassword("");
       setRemovePassword(false);
-      toast.success(t("documents.toast.shareSaved"));
+      toast.success(renew ? t("dialogs.share.renewed") : t("documents.toast.shareSaved"));
     } catch (error) {
       showError(error);
     } finally {
@@ -109,6 +110,15 @@ function ShareSettingsForm({ documentId }: { documentId: string }) {
               <span className="hidden sm:inline">{t("common.copyLink")}</span>
             </Button>
           </div>
+          <button
+            type="button"
+            onClick={() => void save(true)}
+            disabled={saving}
+            className="justify-self-start text-xs font-medium text-brand hover:underline disabled:opacity-50"
+          >
+            {t("dialogs.share.renew")}
+          </button>
+          <p className="text-xs text-muted-foreground">{t("dialogs.share.renewHint")}</p>
         </FormField>
       ) : null}
 
@@ -161,7 +171,7 @@ function ShareSettingsForm({ documentId }: { documentId: string }) {
         ) : (
           <span />
         )}
-        <Button onClick={save} disabled={saving}>
+        <Button onClick={() => void save()} disabled={saving}>
           {saving ? <Loader2 className="animate-spin" /> : null}
           {t("dialogs.share.save")}
         </Button>

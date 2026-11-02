@@ -16,7 +16,31 @@ import { documentInclude, toDocumentDto } from "./serialize";
 export const shareCookieName = (token: string) => `thm_share_${token.replace(/[^a-zA-Z0-9_-]/g, "")}`;
 const UNLOCK_TTL = "12h";
 
-const newToken = () => randomBytes(12).toString("base64url");
+const ALPHABET = "abcdefghijkmnpqrstuvwxyz23456789";
+
+/** Phần đọc được của link: tên tài liệu không dấu, viết thường */
+function slugify(title: string): string {
+  return title
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60)
+    .replace(/-+$/g, "");
+}
+
+/** Link dạng ten-tai-lieu-k7m2qx: dễ đọc nhưng không đoán được nhờ 6 ký tự ngẫu nhiên */
+async function newToken(title: string): Promise<string> {
+  for (;;) {
+    const suffix = Array.from(randomBytes(6), (b) => ALPHABET[b % ALPHABET.length]).join("");
+    const slug = slugify(title);
+    const token = slug ? `${slug}-${suffix}` : suffix;
+    if (!(await db.shareLink.findUnique({ where: { token } }))) return token;
+  }
+}
 
 async function toSettings(documentId: string): Promise<ShareSettings | null> {
   const link = await db.shareLink.findFirst({
@@ -48,7 +72,7 @@ export async function getShareSettings(me: Member, documentId: string) {
 export async function upsertShareSettings(
   me: Member,
   documentId: string,
-  input: { isActive: boolean; allowDownload: boolean; password?: string; expiresAt: string | null },
+  input: { isActive: boolean; allowDownload: boolean; password?: string; expiresAt: string | null; renew?: boolean },
 ) {
   const doc = await loadDocument(me, documentId);
   assert(canShare(me, doc));
@@ -62,8 +86,15 @@ export async function upsertShareSettings(
     ...(passwordHash !== undefined ? { passwordHash } : {}),
   };
 
-  if (existing) await db.shareLink.update({ where: { id: existing.id }, data });
-  else await db.shareLink.create({ data: { ...data, documentId, token: newToken(), createdById: me.id } });
+  if (existing) {
+    // renew: cấp link mới, link cũ hết hiệu lực ngay (lượt xem cũ vẫn giữ)
+    await db.shareLink.update({
+      where: { id: existing.id },
+      data: input.renew ? { ...data, token: await newToken(doc.title) } : data,
+    });
+  } else {
+    await db.shareLink.create({ data: { ...data, documentId, token: await newToken(doc.title), createdById: me.id } });
+  }
 
   if (input.isActive && doc.visibility !== "PUBLIC") {
     await db.document.update({ where: { id: documentId }, data: { visibility: "PUBLIC" } });

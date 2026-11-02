@@ -25,6 +25,8 @@ export interface ShareInput {
   /** undefined: giữ nguyên, "": gỡ mật khẩu */
   password?: string;
   expiresAt: string | null;
+  /** true: cấp link mới, link cũ hết hiệu lực */
+  renew?: boolean;
 }
 
 /** Hợp đồng giữa UI và backend (Route Handlers trong src/app/api) */

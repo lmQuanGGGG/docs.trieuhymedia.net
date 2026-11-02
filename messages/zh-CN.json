@@ -320,7 +320,10 @@
       "views": "{count} 次浏览",
       "pickDocument": "选择要分享的文档",
       "noPermission": "你没有分享此文档的权限。",
-      "loading": "正在加载设置…"
+      "loading": "正在加载设置…",
+      "renew": "生成新链接",
+      "renewHint": "新链接包含文档名称；旧链接将立即失效。",
+      "renewed": "已生成新链接，旧链接已失效"
     }
   },
   "validation": {

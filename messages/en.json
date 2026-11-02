@@ -320,7 +320,10 @@
       "views": "{count, plural, one {# view} other {# views}}",
       "pickDocument": "Choose a document to share",
       "noPermission": "You don't have permission to share this document.",
-      "loading": "Loading settings…"
+      "loading": "Loading settings…",
+      "renew": "Create new link",
+      "renewHint": "The new link uses the document title; the old link stops working immediately.",
+      "renewed": "New link created; the old link no longer works"
     }
   },
   "validation": {

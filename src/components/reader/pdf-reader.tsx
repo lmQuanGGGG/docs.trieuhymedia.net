@@ -11,6 +11,9 @@ import { ReaderError } from "./reader-states";
 
 const ZOOM_STEPS = [0.6, 0.75, 0.9, 1, 1.15, 1.3, 1.5] as const;
 const MAX_PAGE_WIDTH = 880;
+const OVERSAMPLE = 1.5;
+/** ~16 triệu điểm ảnh mỗi trang (≈64MB RAM), dưới giới hạn canvas của Safari iOS */
+const MAX_CANVAS_PIXELS = 16_000_000;
 
 interface PageSize {
   width: number;
@@ -57,8 +60,13 @@ function PdfPage({
     (async () => {
       const page = await doc.getPage(index + 1);
       if (cancelled || !canvasRef.current) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const viewport = page.getViewport({ scale: (width / size.width) * dpr });
+      // Vẽ dư độ phân giải (1.5× mật độ điểm ảnh) để chữ sắc nét cả khi trình duyệt
+      // đang zoom hoặc màn hình có hệ số lẻ; giới hạn số điểm ảnh để không tốn bộ nhớ.
+      const cssScale = width / size.width;
+      let outputScale = Math.max(window.devicePixelRatio || 1, 1) * OVERSAMPLE;
+      const pixels = size.width * cssScale * outputScale * size.height * cssScale * outputScale;
+      if (pixels > MAX_CANVAS_PIXELS) outputScale *= Math.sqrt(MAX_CANVAS_PIXELS / pixels);
+      const viewport = page.getViewport({ scale: cssScale * outputScale });
       const canvas = canvasRef.current;
       canvas.width = Math.floor(viewport.width);
       canvas.height = Math.floor(viewport.height);
@@ -69,7 +77,7 @@ function PdfPage({
       cancelled = true;
       task?.cancel();
     };
-  }, [near, doc, index, width, size.width]);
+  }, [near, doc, index, width, size.width, size.height]);
 
   return (
     <div

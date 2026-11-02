@@ -36,5 +36,6 @@ export const shareBody = z.object({
   allowDownload: z.boolean(),
   password: z.string().max(100).optional(),
   expiresAt: z.iso.datetime({ offset: true }).nullable(),
+  renew: z.boolean().optional(),
 });
 export const unlockBody = z.object({ password: z.string().min(1).max(100) });

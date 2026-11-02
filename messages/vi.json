@@ -320,7 +320,10 @@
       "views": "{count, plural, other {# lượt xem}}",
       "pickDocument": "Chọn tài liệu để chia sẻ",
       "noPermission": "Bạn không có quyền chia sẻ tài liệu này.",
-      "loading": "Đang tải cài đặt…"
+      "loading": "Đang tải cài đặt…",
+      "renew": "Tạo link mới",
+      "renewHint": "Link mới mang tên tài liệu; link cũ sẽ ngừng hoạt động ngay.",
+      "renewed": "Đã tạo link mới, link cũ không còn dùng được"
     }
   },
   "validation": {
