@@ -27,6 +27,10 @@ jobs:
           printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # In dấu vân tay (không phải bí mật) để đối chiếu với key trên server
+          # Key đúng: SHA256:6lOFSQLOYxSmnDGQRxyg7tq0kp5UKC3XiqvNq6qAktQ
+          echo "Fingerprint của DEPLOY_SSH_KEY:"
+          ssh-keygen -lf ~/.ssh/deploy_key || echo "DEPLOY_SSH_KEY sai định dạng (thiếu dòng BEGIN/END?)"
 
       # Khoá deploy chỉ được chạy remote-deploy.sh (forced command trên server)
       - name: Gửi mã nguồn và deploy
