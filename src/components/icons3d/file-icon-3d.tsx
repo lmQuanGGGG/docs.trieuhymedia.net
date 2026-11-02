@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Ground, block, roundRect, solid, tone } from "./geometry";
 import { lines, sheet } from "./parts";
 
-export type FileIcon3DType = "pdf" | "docx" | "pptx" | "xlsx" | "image" | "link";
+export type FileIcon3DType = "pdf" | "docx" | "pptx" | "xlsx" | "image" | "video" | "link";
 
 const FILES: Record<FileIcon3DType, { color: string; label: string }> = {
   pdf: { color: "#B4434B", label: "PDF" },
@@ -11,6 +11,7 @@ const FILES: Record<FileIcon3DType, { color: string; label: string }> = {
   pptx: { color: "#C2603A", label: "PPT" },
   xlsx: { color: "#3F7D58", label: "XLS" },
   image: { color: "#8A6A3B", label: "IMG" },
+  video: { color: "#1F6F8B", label: "MP4" },
   link: { color: "#52525B", label: "URL" },
 };
 
@@ -45,6 +46,8 @@ function glyph(type: FileIcon3DType, fill: string): ReactElement {
       );
     case "image":
       return <path d="M14.5 41.5 21 33l4.5 5.5 3-3.5 6 6.5Z" fill={fill} />;
+    case "video":
+      return <path d="M20 31.5v10l9-5Z" fill={fill} />;
     case "link":
       return (
         <g fill="none" stroke={fill} strokeWidth={2.4}>

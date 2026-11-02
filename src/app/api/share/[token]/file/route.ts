@@ -10,5 +10,5 @@ export const GET = handle(async (req: Request, ctx: RouteContext<"/api/share/[to
   const download = url.searchParams.get("download") === "1";
   const unlock = (await cookies()).get(shareCookieName(token))?.value;
   const file = await resolvePublicFile(token, unlock, variant, download, url.searchParams.get("lang"));
-  return fileResponse(file.key, { title: file.title, mime: file.mime, download });
+  return fileResponse(file.key, { title: file.title, mime: file.mime, download, range: req.headers.get("range") });
 });

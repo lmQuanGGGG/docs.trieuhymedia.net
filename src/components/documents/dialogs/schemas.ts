@@ -3,7 +3,7 @@ import { brands, categorySlugs, documentTypes, visibilities } from "@/types";
 
 export const TITLE_MIN = 3;
 export const TITLE_MAX = 120;
-export const MAX_FILE_BYTES = 200 * 1024 * 1024;
+export const MAX_FILE_BYTES = 2 * 1024 * 1024 * 1024;
 
 type Translate = (key: "required" | "titleMin" | "titleMax" | "fileRequired" | "fileTooLarge" | "url" | "nameMin", values?: Record<string, number>) => string;
 

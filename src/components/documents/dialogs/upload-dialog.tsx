@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Progress } from "@/components/ui/progress";
 import { FormField } from "@/components/shared/form-field";
 import { formatBytes } from "@/lib/format";
 import { useWorkspace } from "@/lib/store/workspace-store";
@@ -19,13 +20,14 @@ import { inferTypeFromFile } from "./file-type";
 import { MetaSelectFields } from "./meta-fields";
 import { uploadSchema } from "./schemas";
 
-const ACCEPT = ".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,image/*";
+const ACCEPT = ".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,image/*,video/mp4,video/quicktime,video/webm,.mp4,.mov,.m4v,.webm";
 
 export function UploadDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const t = useTranslations();
   const tv = useTranslations("validation");
   const locale = useLocale();
-  const { createDocument } = useWorkspace();
+  const { uploadDocument } = useWorkspace();
+  const [progress, setProgress] = useState<number | null>(null);
   const showError = useApiErrorToast();
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
@@ -58,19 +60,20 @@ export function UploadDialog({ open, onOpenChange }: { open: boolean; onOpenChan
   };
 
   const onSubmit = handleSubmit(async (values) => {
-    const form = new FormData();
-    form.set("file", values.file);
-    form.set("title", values.title);
-    form.set("category", values.category);
-    form.set("brand", values.brand);
-    form.set("visibility", values.visibility);
+    setProgress(0);
     try {
-      const doc = await createDocument(form);
+      const doc = await uploadDocument(
+        values.file,
+        { title: values.title, category: values.category, brand: values.brand, visibility: values.visibility },
+        setProgress,
+      );
       toast.success(t("documents.toast.uploaded", { title: doc.title }));
       reset();
       onOpenChange(false);
     } catch (error) {
       showError(error);
+    } finally {
+      setProgress(null);
     }
   });
 
@@ -155,6 +158,12 @@ export function UploadDialog({ open, onOpenChange }: { open: boolean; onOpenChan
             <Info className="mt-0.5 size-3.5 shrink-0" />
             {t("dialogs.upload.notice")}
           </p>
+          {progress !== null ? (
+            <div className="grid gap-1.5" aria-live="polite">
+              <Progress value={progress} />
+              <p className="text-xs text-muted-foreground tabular-nums">{t("dialogs.upload.uploading", { percent: progress })}</p>
+            </div>
+          ) : null}
           <DialogFooter>
             <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
               {t("common.cancel")}

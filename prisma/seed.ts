@@ -51,6 +51,7 @@ const SAMPLE_FILE: Record<DocumentType, string | null> = {
   PPTX: null,
   XLSX: "bao-gia-san-xuat-mau.xlsx",
   IMAGE: "hy-garden-moodboard.svg",
+  VIDEO: null,
   LINK: null,
 };
 
@@ -66,6 +67,7 @@ const MIME: Record<DocumentType, string | null> = {
   PPTX: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
   XLSX: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   IMAGE: "image/svg+xml",
+  VIDEO: "video/mp4",
   LINK: null,
 };
 
@@ -75,6 +77,7 @@ const EXT: Record<DocumentType, string> = {
   PPTX: "pptx",
   XLSX: "xlsx",
   IMAGE: "svg",
+  VIDEO: "mp4",
   LINK: "",
 };
 

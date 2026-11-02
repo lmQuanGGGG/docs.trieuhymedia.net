@@ -1,4 +1,4 @@
-import { FileImage, FileSpreadsheet, FileText, FileType2, Link2, type LucideIcon, Presentation } from "lucide-react";
+import { FileImage, FileSpreadsheet, FileText, FileType2, FileVideo, Link2, type LucideIcon, Presentation } from "lucide-react";
 import { FileIcon3D } from "@/components/icons3d";
 import type { DocumentType } from "@/types";
 
@@ -8,6 +8,7 @@ export const fileTypeMeta: Record<DocumentType, { icon: LucideIcon; color: strin
   pptx: { icon: Presentation, color: "#C2603A", label: "PPT" },
   xlsx: { icon: FileSpreadsheet, color: "#3F7D58", label: "XLS" },
   image: { icon: FileImage, color: "#8A6A3B", label: "IMG" },
+  video: { icon: FileVideo, color: "#1F6F8B", label: "MP4" },
   link: { icon: Link2, color: "#52525B", label: "URL" },
 };
 

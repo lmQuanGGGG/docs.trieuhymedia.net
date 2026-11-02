@@ -13,7 +13,7 @@ function invert<K extends string, V extends string>(map: Record<K, V>): Record<V
   return Object.fromEntries(Object.entries(map).map(([k, v]) => [v, k])) as Record<V, K>;
 }
 
-export const typeToDto: Record<DbType, DocumentType> = { PDF: "pdf", DOCX: "docx", PPTX: "pptx", XLSX: "xlsx", IMAGE: "image", LINK: "link" };
+export const typeToDto: Record<DbType, DocumentType> = { PDF: "pdf", DOCX: "docx", PPTX: "pptx", XLSX: "xlsx", IMAGE: "image", VIDEO: "video", LINK: "link" };
 export const typeFromDto = invert(typeToDto);
 
 export const categoryToDto: Record<DocumentCategory, CategorySlug> = {

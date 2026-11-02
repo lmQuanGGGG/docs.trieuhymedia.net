@@ -112,7 +112,8 @@
     "pptx": "PowerPoint",
     "xlsx": "Excel",
     "image": "图片",
-    "link": "外部链接"
+    "link": "外部链接",
+    "video": "视频"
   },
   "statuses": {
     "draft": "草稿",
@@ -265,7 +266,7 @@
       "description": "选择文件并填写信息。当前版本仅在会话中记录文件信息，尚未上传到服务器。",
       "dropzone": "将文件拖放到此处",
       "browse": "或从设备中选择",
-      "hint": "PDF、DOCX、PPTX、XLSX、PNG、JPG，最大 200 MB",
+      "hint": "PDF、Word、PowerPoint、Excel、图片、MP4/MOV 视频 — 最大 2 GB",
       "file": "文件",
       "titleLabel": "标题",
       "categoryLabel": "分类",
@@ -273,7 +274,8 @@
       "visibilityLabel": "可见范围",
       "submit": "添加文档",
       "change": "更换文件",
-      "notice": "文件存储在公司服务器上。PDF、Word、Excel 和图片可直接在浏览器中查看；PowerPoint 需转换为 PDF。"
+      "notice": "文件存储在公司服务器上。PDF、Word、Excel 和图片可直接在浏览器中查看；PowerPoint 需转换为 PDF。",
+      "uploading": "正在上传… {percent}%"
     },
     "newDocument": {
       "title": "新建文档",
@@ -331,7 +333,7 @@
     "titleMin": "标题至少需要 {min} 个字符。",
     "titleMax": "标题最多 {max} 个字符。",
     "fileRequired": "请选择一个文件。",
-    "fileTooLarge": "文件超过 200 MB。",
+    "fileTooLarge": "文件超过 2 GB。",
     "email": "邮箱地址无效。",
     "url": "链接地址无效。",
     "nameMin": "名称至少需要 {min} 个字符。",

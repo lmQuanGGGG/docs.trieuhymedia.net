@@ -1,4 +1,4 @@
-export const documentTypes = ["pdf", "docx", "pptx", "xlsx", "image", "link"] as const;
+export const documentTypes = ["pdf", "docx", "pptx", "xlsx", "image", "video", "link"] as const;
 export type DocumentType = (typeof documentTypes)[number];
 
 export const categorySlugs = [

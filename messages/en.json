@@ -112,7 +112,8 @@
     "pptx": "PowerPoint",
     "xlsx": "Excel",
     "image": "Image",
-    "link": "External link"
+    "link": "External link",
+    "video": "Video"
   },
   "statuses": {
     "draft": "Draft",
@@ -265,7 +266,7 @@
       "description": "Choose a file and fill in the details. This version only records file details in the session; nothing is uploaded to the server yet.",
       "dropzone": "Drag and drop a file here",
       "browse": "or browse your device",
-      "hint": "PDF, DOCX, PPTX, XLSX, PNG, JPG — up to 200 MB",
+      "hint": "PDF, Word, PowerPoint, Excel, images, MP4/MOV video — up to 2 GB",
       "file": "File",
       "titleLabel": "Title",
       "categoryLabel": "Category",
@@ -273,7 +274,8 @@
       "visibilityLabel": "Visibility",
       "submit": "Add document",
       "change": "Change file",
-      "notice": "Files are stored on the company server. PDF, Word, Excel and images open in the browser; PowerPoint needs conversion to PDF."
+      "notice": "Files are stored on the company server. PDF, Word, Excel and images open in the browser; PowerPoint needs conversion to PDF.",
+      "uploading": "Uploading… {percent}%"
     },
     "newDocument": {
       "title": "New document",
@@ -331,7 +333,7 @@
     "titleMin": "Title must be at least {min} characters.",
     "titleMax": "Title must be at most {max} characters.",
     "fileRequired": "Please select a file.",
-    "fileTooLarge": "File exceeds 200 MB.",
+    "fileTooLarge": "File exceeds 2 GB.",
     "email": "Invalid email address.",
     "url": "Invalid URL.",
     "nameMin": "Name must be at least {min} characters.",

@@ -37,6 +37,12 @@ export interface DocsApi {
   setVisibility(id: string, visibility: Visibility): Promise<DocumentItem>;
   remove(ids: string[]): Promise<number>;
   createDocument(form: FormData): Promise<DocumentItem>;
+  /** Upload stream (tới 2GB), báo % tiến trình */
+  uploadDocument(
+    file: File,
+    meta: { title: string; category: string; brand: string; visibility: string },
+    onProgress?: (percent: number) => void,
+  ): Promise<DocumentItem>;
   createFolder(input: { name: string; brand: Brand }): Promise<void>;
   createMember(input: { name: string; email: string; role: Role; title?: string; password: string }): Promise<void>;
   resetPassword(memberId: string, password: string): Promise<void>;

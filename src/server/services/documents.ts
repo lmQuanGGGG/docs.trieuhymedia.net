@@ -4,12 +4,13 @@ import { db } from "@/server/db";
 import { ApiError } from "@/server/http";
 import { categoryFromDto, typeFromDto, visibilityFromDto } from "@/server/mappers";
 import { assert, canCreate, canDelete, canEdit, canShare, canView } from "@/server/permissions";
-import { removePrefix, safeFileName, saveFile } from "@/server/storage";
+import { removePrefix, safeFileName, saveFile, saveStream } from "@/server/storage";
 import type { Brand, CategorySlug, DocumentType, Visibility } from "@/types";
 import { logActivity } from "./activity";
 import { documentInclude, toDocumentDto } from "./serialize";
 
-export const MAX_UPLOAD_BYTES = 200 * 1024 * 1024;
+/** 2GB: đủ cho video demo; tệp được ghi stream xuống đĩa nên không tốn RAM */
+export const MAX_UPLOAD_BYTES = 2 * 1024 * 1024 * 1024;
 
 const MIME_BY_TYPE: Record<DocumentType, string> = {
   pdf: "application/pdf",
@@ -17,6 +18,7 @@ const MIME_BY_TYPE: Record<DocumentType, string> = {
   pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
   xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   image: "",
+  video: "video/mp4",
   link: "text/uri-list",
 };
 
@@ -27,6 +29,7 @@ export function inferType(name: string, mime: string): DocumentType {
   if (n.endsWith(".ppt") || n.endsWith(".pptx")) return "pptx";
   if (n.endsWith(".xls") || n.endsWith(".xlsx") || n.endsWith(".csv")) return "xlsx";
   if (mime.startsWith("image/")) return "image";
+  if (mime.startsWith("video/") || /\.(mp4|m4v|mov|webm)$/.test(n)) return "video";
   throw new ApiError("bad_request", "unsupported file type");
 }
 
@@ -91,6 +94,51 @@ export async function createDocument(
     });
   }
 
+  await logActivity({ actorId: me.id, action: "CREATED", targetType: "document", targetName: doc.title, documentId: doc.id });
+  return dto(me, await loadDocument(me, doc.id));
+}
+
+/** Tải tệp lên dạng stream (ghi thẳng xuống đĩa) — dùng cho mọi tệp, kể cả video lớn */
+export async function createDocumentFromStream(
+  me: Member,
+  input: { title: string; category: CategorySlug; brand: Brand; visibility: Visibility; folderId?: string | null },
+  file: { name: string; mime: string; body: ReadableStream<Uint8Array> },
+) {
+  assert(canCreate(me));
+  const type = inferType(file.name, file.mime);
+  const mime = file.mime && file.mime !== "application/octet-stream" ? file.mime : MIME_BY_TYPE[type];
+  const doc = await db.document.create({
+    data: {
+      title: input.title,
+      type: typeFromDto[type],
+      category: categoryFromDto[input.category],
+      brand: input.brand,
+      visibility: visibilityFromDto[input.visibility],
+      status: "DRAFT",
+      folderId: input.folderId ?? null,
+      ownerId: me.id,
+      mimeType: mime || null,
+    },
+  });
+  const key = `documents/${doc.id}/v1-${safeFileName(file.name)}`;
+  let size: number;
+  try {
+    size = await saveStream(key, file.body, MAX_UPLOAD_BYTES);
+  } catch (error) {
+    // Tải dở hoặc quá dung lượng: không để lại bản ghi rác
+    await db.document.delete({ where: { id: doc.id } });
+    await removePrefix(`documents/${doc.id}`);
+    throw error;
+  }
+  await db.document.update({
+    where: { id: doc.id },
+    data: {
+      fileUrl: key,
+      previewUrl: type === "pdf" ? key : null,
+      sizeBytes: BigInt(size),
+      versions: { create: { version: 1, fileUrl: key, sizeBytes: BigInt(size), note: file.name, createdById: me.id } },
+    },
+  });
   await logActivity({ actorId: me.id, action: "CREATED", targetType: "document", targetName: doc.title, documentId: doc.id });
   return dto(me, await loadDocument(me, doc.id));
 }

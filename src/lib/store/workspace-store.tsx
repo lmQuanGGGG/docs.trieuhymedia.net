@@ -58,6 +58,11 @@ interface WorkspaceContextValue extends WorkspaceState {
   rename: (id: string, title: string) => Promise<void>;
   remove: (ids: string[]) => Promise<number>;
   createDocument: (form: FormData) => Promise<DocumentItem>;
+  uploadDocument: (
+    file: File,
+    meta: { title: string; category: string; brand: string; visibility: string },
+    onProgress?: (percent: number) => void,
+  ) => Promise<DocumentItem>;
   createFolder: (input: { name: string; brand: Brand }) => Promise<void>;
   setVisibility: (id: string, visibility: Visibility) => Promise<void>;
   uploadVariant: (id: string, locale: string, file: File) => Promise<void>;
@@ -129,6 +134,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
       rename: (id, title) => mutate(async () => void (await api.rename(id, title))),
       remove: (ids) => mutate(() => api.remove(ids)),
       createDocument: (form) => mutate(() => api.createDocument(form)),
+      uploadDocument: (file, meta, onProgress) => mutate(() => api.uploadDocument(file, meta, onProgress)),
       createFolder: (input) => mutate(() => api.createFolder(input)),
       setVisibility: (id, visibility) => mutate(async () => void (await api.setVisibility(id, visibility))),
       uploadVariant: (id, locale, file) => mutate(async () => void (await api.uploadVariant(id, locale, file))),

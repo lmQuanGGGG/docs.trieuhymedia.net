@@ -1,8 +1,9 @@
 import "server-only";
-import { createReadStream } from "node:fs";
+import { createReadStream, createWriteStream } from "node:fs";
 import { mkdir, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { Readable } from "node:stream";
+import { Readable, Transform } from "node:stream";
+import { pipeline } from "node:stream/promises";
 import { serverEnv } from "./env";
 import { ApiError } from "./http";
 
@@ -24,11 +25,39 @@ export async function removePrefix(prefix: string): Promise<void> {
   await rm(resolveKey(prefix), { recursive: true, force: true });
 }
 
-export async function openFile(key: string): Promise<{ stream: ReadableStream<Uint8Array>; size: number }> {
+/** Ghi stream xuống đĩa, dừng và xoá tệp nếu vượt maxBytes; trả về dung lượng */
+export async function saveStream(key: string, body: ReadableStream<Uint8Array>, maxBytes: number): Promise<number> {
+  const full = resolveKey(key);
+  await mkdir(path.dirname(full), { recursive: true });
+  let size = 0;
+  const limit = new Transform({
+    transform(chunk: Buffer, _enc, done) {
+      size += chunk.length;
+      if (size > maxBytes) done(new ApiError("bad_request", "file too large"));
+      else done(null, chunk);
+    },
+  });
+  try {
+    await pipeline(Readable.fromWeb(body as import("node:stream/web").ReadableStream), limit, createWriteStream(full));
+  } catch (error) {
+    await rm(full, { force: true });
+    throw error instanceof ApiError ? error : new ApiError("bad_request", "upload interrupted");
+  }
+  return size;
+}
+
+export async function fileSize(key: string): Promise<number> {
+  const info = await stat(resolveKey(key)).catch(() => null);
+  if (!info?.isFile()) throw new ApiError("not_found", "file missing");
+  return info.size;
+}
+
+/** Mở tệp (cả tệp hoặc một đoạn byte cho Range request của video) */
+export async function openFile(key: string, range?: { start: number; end: number }): Promise<{ stream: ReadableStream<Uint8Array>; size: number }> {
   const full = resolveKey(key);
   const info = await stat(full).catch(() => null);
   if (!info?.isFile()) throw new ApiError("not_found", "file missing");
-  const stream = Readable.toWeb(createReadStream(full)) as ReadableStream<Uint8Array>;
+  const stream = Readable.toWeb(createReadStream(full, range)) as ReadableStream<Uint8Array>;
   return { stream, size: info.size };
 }
 

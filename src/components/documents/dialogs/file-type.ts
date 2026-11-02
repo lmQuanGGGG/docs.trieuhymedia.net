@@ -8,5 +8,6 @@ export function inferTypeFromFile(file: File): DocumentType {
   if (name.endsWith(".ppt") || name.endsWith(".pptx")) return "pptx";
   if (name.endsWith(".xls") || name.endsWith(".xlsx") || name.endsWith(".csv")) return "xlsx";
   if (file.type.startsWith("image/")) return "image";
+  if (file.type.startsWith("video/") || /\.(mp4|m4v|mov|webm)$/.test(name)) return "video";
   return "docx";
 }

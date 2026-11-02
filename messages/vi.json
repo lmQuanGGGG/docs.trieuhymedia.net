@@ -112,7 +112,8 @@
     "pptx": "PowerPoint",
     "xlsx": "Excel",
     "image": "Hình ảnh",
-    "link": "Liên kết ngoài"
+    "link": "Liên kết ngoài",
+    "video": "Video"
   },
   "statuses": {
     "draft": "Bản nháp",
@@ -265,7 +266,7 @@
       "description": "Chọn tệp và điền thông tin. Bản hiện tại chỉ ghi nhận thông tin tệp trong phiên, chưa tải lên máy chủ.",
       "dropzone": "Kéo thả tệp vào đây",
       "browse": "hoặc chọn từ máy",
-      "hint": "PDF, DOCX, PPTX, XLSX, PNG, JPG — tối đa 200 MB",
+      "hint": "PDF, Word, PowerPoint, Excel, ảnh, video MP4/MOV — tối đa 2 GB",
       "file": "Tệp",
       "titleLabel": "Tiêu đề",
       "categoryLabel": "Danh mục",
@@ -273,7 +274,8 @@
       "visibilityLabel": "Quyền xem",
       "submit": "Thêm tài liệu",
       "change": "Đổi tệp",
-      "notice": "Tệp được lưu trên máy chủ của công ty. PDF, Word, Excel và ảnh xem trực tiếp được; PowerPoint cần chuyển đổi sang PDF."
+      "notice": "Tệp được lưu trên máy chủ của công ty. PDF, Word, Excel và ảnh xem trực tiếp được; PowerPoint cần chuyển đổi sang PDF.",
+      "uploading": "Đang tải lên… {percent}%"
     },
     "newDocument": {
       "title": "Tài liệu mới",
@@ -331,7 +333,7 @@
     "titleMin": "Tiêu đề cần ít nhất {min} ký tự.",
     "titleMax": "Tiêu đề tối đa {max} ký tự.",
     "fileRequired": "Vui lòng chọn một tệp.",
-    "fileTooLarge": "Tệp vượt quá 200 MB.",
+    "fileTooLarge": "Tệp vượt quá 2 GB.",
     "email": "Email không hợp lệ.",
     "url": "Đường dẫn không hợp lệ.",
     "nameMin": "Tên cần ít nhất {min} ký tự.",

@@ -1,3 +1,4 @@
+import type { DocumentItem } from "@/types";
 import type { DocsApi } from "./types";
 
 export type ApiErrorCode = "unauthorized" | "forbidden" | "not_found" | "bad_request" | "conflict" | "server_error" | "network";
@@ -50,6 +51,33 @@ export const httpApi: DocsApi = {
   setVisibility: (id, visibility) => request(`/api/documents/${id}`, { method: "PATCH", json: { visibility } }),
   remove: async (ids) => (await request<{ deleted: number }>("/api/documents/delete", { method: "POST", json: { ids } })).deleted,
   createDocument: (form) => request("/api/documents", { method: "POST", body: form }),
+  uploadDocument: (file, meta, onProgress) =>
+    new Promise((resolve, reject) => {
+      // XHR thay vì fetch để có sự kiện tiến trình upload
+      const xhr = new XMLHttpRequest();
+      const query = new URLSearchParams(meta).toString();
+      xhr.open("POST", `/api/documents/upload?${query}`);
+      xhr.setRequestHeader("Content-Type", file.type || "application/octet-stream");
+      xhr.setRequestHeader("X-File-Name", encodeURIComponent(file.name));
+      xhr.upload.onprogress = (e) => {
+        if (e.lengthComputable) onProgress?.(Math.round((e.loaded / e.total) * 100));
+      };
+      xhr.onload = () => {
+        let body: { error?: ApiErrorCode } & Record<string, unknown> = {};
+        try {
+          body = JSON.parse(xhr.responseText) as typeof body;
+        } catch {
+          // phản hồi không phải JSON (vd. nginx 413)
+        }
+        if (xhr.status >= 200 && xhr.status < 300) resolve(body as unknown as DocumentItem);
+        else {
+          if (xhr.status === 401) redirectToLogin();
+          reject(new ApiClientError(body.error ?? (xhr.status === 413 ? "bad_request" : "server_error"), xhr.status));
+        }
+      };
+      xhr.onerror = () => reject(new ApiClientError("network", 0));
+      xhr.send(file);
+    }),
   createFolder: async (input) => {
     await request("/api/folders", { method: "POST", json: input });
   },

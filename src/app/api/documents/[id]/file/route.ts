@@ -16,5 +16,5 @@ export const GET = handle(async (req: Request, ctx: RouteContext<"/api/documents
   if (download) {
     await logActivity({ actorId: me.id, action: "DOWNLOADED", targetType: "document", targetName: doc.title, documentId: doc.id });
   }
-  return fileResponse(picked.key, { title: doc.title + picked.suffix, mime: picked.mime, download });
+  return fileResponse(picked.key, { title: doc.title + picked.suffix, mime: picked.mime, download, range: req.headers.get("range") });
 });

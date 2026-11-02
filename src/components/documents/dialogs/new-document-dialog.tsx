@@ -77,7 +77,7 @@ export function NewDocumentDialog({ open, onOpenChange }: { open: boolean; onOpe
               <fieldset className="grid gap-1.5">
                 <legend className="mb-1.5 text-[13px] font-medium">{t("dialogs.newDocument.typeLabel")}</legend>
                 <div className="grid grid-cols-3 gap-2 sm:grid-cols-6" role="radiogroup">
-                  {documentTypes.map((dt) => (
+                  {documentTypes.filter((dt) => dt !== "video").map((dt) => (
                     <button
                       key={dt}
                       type="button"

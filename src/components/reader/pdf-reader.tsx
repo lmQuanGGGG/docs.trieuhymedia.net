@@ -58,8 +58,9 @@ function PdfPage({
     let task: RenderTask | null = null;
     let cancelled = false;
     (async () => {
-      const page = await doc.getPage(index + 1);
-      if (cancelled || !canvasRef.current) return;
+      // Tài liệu có thể đã bị đóng (đổi ngôn ngữ/rời trang) trong lúc chờ
+      const page = await doc.getPage(index + 1).catch(() => null);
+      if (!page || cancelled || !canvasRef.current) return;
       // Vẽ dư độ phân giải (1.5× mật độ điểm ảnh) để chữ sắc nét cả khi trình duyệt
       // đang zoom hoặc màn hình có hệ số lẻ; giới hạn số điểm ảnh để không tốn bộ nhớ.
       const cssScale = width / size.width;

@@ -14,6 +14,15 @@ const PdfReader = dynamic(() => import("./pdf-reader").then((m) => m.PdfReader),
 const DocxReader = dynamic(() => import("./docx-reader").then((m) => m.DocxReader), { ssr: false, loading });
 const XlsxReader = dynamic(() => import("./xlsx-reader").then((m) => m.XlsxReader), { ssr: false, loading });
 
+function VideoReader({ url, title }: { url: string; title: string }) {
+  return (
+    <div className="overflow-hidden rounded-2xl bg-black shadow-soft">
+      {/* preload=metadata: chỉ tải phần đầu, tua bằng Range request */}
+      <video src={url} controls playsInline preload="metadata" className="mx-auto block max-h-[78vh] w-full" aria-label={title} />
+    </div>
+  );
+}
+
 function ImageReader({ url, title }: { url: string; title: string }) {
   const [full, setFull] = useState(false);
   return (
@@ -42,6 +51,7 @@ export function DocumentReader({ document: d, onDownload }: { document: Document
   if (d.type === "docx" && d.fileUrl) return <DocxReader url={d.fileUrl} />;
   if (d.type === "xlsx" && d.fileUrl) return <XlsxReader url={d.fileUrl} />;
   if (d.type === "image" && d.fileUrl) return <ImageReader url={d.fileUrl} title={d.title} />;
+  if (d.type === "video" && d.fileUrl) return <VideoReader url={d.fileUrl} title={d.title} />;
 
   return <DocumentPreview document={d} onDownload={onDownload} />;
 }
