@@ -36,4 +36,6 @@ jobs:
       - name: Gửi mã nguồn và deploy
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-        run: git archive --format=tar HEAD | ssh -i ~/.ssh/deploy_key docsapp@"$DEPLOY_HOST"
+        run: |
+          SSH_OPTS='-i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes'
+          git archive --format=tar HEAD | ssh $SSH_OPTS docsapp@"$DEPLOY_HOST"
