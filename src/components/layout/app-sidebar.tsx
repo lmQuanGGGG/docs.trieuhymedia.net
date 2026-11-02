@@ -27,7 +27,7 @@ export function AppSidebar({ collapsed, onToggle }: { collapsed: boolean; onTogg
       <div className={cn("flex h-14 items-center px-4", collapsed ? "justify-center px-0" : "lg:justify-between")}>
         <Link href="/" className="flex min-w-0 items-center rounded-lg" aria-label={t("common.appName")}>
           <span className={cn("hidden", !collapsed && "lg:flex")}>
-            <Logo subtitle={t("common.workspacePlan")} />
+            <Logo />
           </span>
           <span className={cn(!collapsed && "lg:hidden")}>
             <LogoMark />

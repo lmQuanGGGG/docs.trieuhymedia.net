@@ -45,7 +45,7 @@ export function GeneralSection() {
       >
         <div className="grid gap-5">
           <div className="flex items-center gap-4">
-            <LogoMark className="size-14 rounded-2xl text-lg" />
+            <LogoMark className="size-14" />
             <div className="grid gap-1.5">
               <span className="text-sm font-medium">{t("general.logo")}</span>
               <span className="text-xs text-muted-foreground">{t("general.logoHint")}</span>

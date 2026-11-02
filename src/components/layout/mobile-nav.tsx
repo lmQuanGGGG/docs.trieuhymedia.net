@@ -23,7 +23,7 @@ export function MobileNav() {
         <SheetHeader className="h-14 justify-center px-4 py-0">
           <SheetTitle asChild>
             <div>
-              <Logo subtitle={t("common.workspacePlan")} />
+              <Logo />
             </div>
           </SheetTitle>
           <SheetDescription className="sr-only">{t("nav.workspace")}</SheetDescription>

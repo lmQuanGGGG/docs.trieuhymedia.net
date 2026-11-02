@@ -1,29 +1,37 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-/** Monogram "TH" — dùng tạm cho đến khi có file logo chính thức */
+const ALT = "TRIỆU HỶ MEDIA";
+
+/** Biểu tượng tròn chữ 喜: dùng ở sidebar thu gọn và ô logo */
 export function LogoMark({ className }: { className?: string }) {
   return (
-    <span
-      aria-hidden
-      className={cn(
-        "relative grid size-8 shrink-0 place-items-center rounded-[10px] text-[13px] font-semibold tracking-tight text-white",
-        "bg-[#9B4148] dark:bg-[#B4606A]",
-        className,
-      )}
-    >
-      TH
-    </span>
+    <Image
+      src="/brand/logo-mark.png"
+      alt={ALT}
+      width={160}
+      height={160}
+      priority
+      className={cn("size-8 shrink-0 object-contain", className)}
+    />
   );
 }
 
+/** Logo đầy đủ (biểu tượng + chữ TRIỆU HỶ Media), kèm dòng phụ nếu có */
 export function Logo({ className, subtitle }: { className?: string; subtitle?: string }) {
   return (
     <span className={cn("flex min-w-0 items-center gap-2.5", className)}>
-      <LogoMark />
-      <span className="flex min-w-0 flex-col leading-tight">
-        <span className="truncate text-sm font-semibold tracking-tight">TRIỆU HỶ MEDIA</span>
-        {subtitle ? <span className="truncate text-xs text-muted-foreground">{subtitle}</span> : null}
-      </span>
+      <Image
+        src="/brand/logo.png"
+        alt={ALT}
+        width={800}
+        height={259}
+        priority
+        className="h-11 w-auto shrink-0 object-contain"
+      />
+      {subtitle ? (
+        <span className="hidden truncate border-l pl-2.5 text-xs leading-tight text-muted-foreground sm:block">{subtitle}</span>
+      ) : null}
     </span>
   );
 }

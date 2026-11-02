@@ -4,7 +4,7 @@ export const company = {
   shortName: "TRIEU HY MEDIA CO.,LTD",
   brandName: "TRIỆU HỶ MEDIA",
   taxId: "0402340888",
-  address: "77 Thanh Lương 8, Phường Hòa Xuân, Thành phố Đà Nẵng, Việt Nam",
+  address: "15 Trung Lương 16, Phường Hòa Xuân, Thành phố Đà Nẵng, Việt Nam",
   phone: "0961 499 943",
   email: "admin@trieuhymedia.com",
   website: "https://trieuhymedia.net",
