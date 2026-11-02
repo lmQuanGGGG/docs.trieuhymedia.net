@@ -83,7 +83,7 @@ const d = (iso: string): Date => new Date(iso);
 // ─── Thành viên ─────────────────────────────────────────────────────────────
 
 const members: Prisma.MemberCreateManyInput[] = [
-  { id: "m-01", name: "Lê Thị Thanh Tiên", email: "tien@trieuhymedia.net", role: Role.SUPER_ADMIN, status: MemberStatus.ACTIVE, title: "Giám đốc điều hành", color: "#9B4148", createdAt: d("2026-01-02T09:00:00+07:00"), lastActiveAt: d("2026-11-02T08:52:00+07:00") },
+  { id: "m-01", name: "Lê Minh Quang", email: "tien@trieuhymedia.net", role: Role.SUPER_ADMIN, status: MemberStatus.ACTIVE, title: null, color: "#9B4148", createdAt: d("2026-01-02T09:00:00+07:00"), lastActiveAt: d("2026-11-02T08:52:00+07:00") },
   { id: "m-02", name: "Đỗ Thị Thanh Lý", email: "ly.do@trieuhymedia.net", role: Role.ADMIN, status: MemberStatus.ACTIVE, title: "Giám đốc", color: "#3F6E6A", createdAt: d("2026-01-05T09:00:00+07:00"), lastActiveAt: d("2026-11-02T08:10:00+07:00") },
   { id: "m-03", name: "Nguyễn Minh Khoa", email: "khoa.nguyen@trieuhymedia.net", role: Role.EDITOR, status: MemberStatus.ACTIVE, title: "Account Manager", color: "#B7791F", createdAt: d("2026-02-01T09:00:00+07:00"), lastActiveAt: d("2026-11-01T17:40:00+07:00") },
   { id: "m-04", name: "Trần Bảo Ngọc", email: "ngoc.tran@trieuhymedia.net", role: Role.EDITOR, status: MemberStatus.ACTIVE, title: "Creative Lead", color: "#C2603A", createdAt: d("2026-02-10T09:00:00+07:00"), lastActiveAt: d("2026-11-01T15:05:00+07:00") },
