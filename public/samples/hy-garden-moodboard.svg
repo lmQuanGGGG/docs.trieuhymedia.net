@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <rect width="1200" height="800" fill="#FFFFFF"/>
+  <rect x="60" y="60" width="520" height="680" rx="24" fill="#3F6E6A"/>
+  <rect x="620" y="60" width="520" height="320" rx="24" fill="#E7EFEC"/>
+  <rect x="620" y="420" width="250" height="320" rx="24" fill="#B7791F"/>
+  <rect x="890" y="420" width="250" height="320" rx="24" fill="#F3E6D3"/>
+  <circle cx="320" cy="330" r="120" fill="#5C8A84"/>
+  <circle cx="320" cy="330" r="70" fill="#E7EFEC"/>
+  <text x="100" y="650" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#FFFFFF">HỶ GARDEN</text>
+  <text x="100" y="695" font-family="Arial, sans-serif" font-size="22" fill="#E7EFEC">Moodboard mẫu · không gian &amp; chất liệu</text>
+  <text x="660" y="130" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#3F6E6A">Bảng màu</text>
+  <circle cx="690" cy="220" r="34" fill="#3F6E6A"/><circle cx="780" cy="220" r="34" fill="#B7791F"/><circle cx="870" cy="220" r="34" fill="#F3E6D3"/><circle cx="960" cy="220" r="34" fill="#18181B"/>
+  <text x="660" y="320" font-family="Arial, sans-serif" font-size="18" fill="#52525B">Ảnh mẫu minh hoạ tính năng xem ảnh trực tiếp</text>
+</svg>

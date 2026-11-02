@@ -1,0 +1,576 @@
+{
+  "meta": {
+    "title": "Triệu Hỷ Media Docs",
+    "description": "Cổng quản lý và chia sẻ tài liệu doanh nghiệp của TRIỆU HỶ MEDIA."
+  },
+  "common": {
+    "appName": "Triệu Hỷ Media Docs",
+    "workspace": "Triệu Hỷ Media",
+    "workspacePlan": "Không gian doanh nghiệp",
+    "cancel": "Huỷ",
+    "save": "Lưu",
+    "saveChanges": "Lưu thay đổi",
+    "delete": "Xoá",
+    "rename": "Đổi tên",
+    "download": "Tải xuống",
+    "share": "Chia sẻ",
+    "open": "Mở",
+    "close": "Đóng",
+    "copyLink": "Sao chép liên kết",
+    "viewAll": "Xem tất cả",
+    "back": "Quay lại",
+    "clear": "Bỏ chọn",
+    "all": "Tất cả",
+    "create": "Tạo",
+    "upload": "Tải lên",
+    "more": "Thêm thao tác",
+    "you": "Bạn",
+    "mockNotice": "Đang dùng dữ liệu mẫu. Mọi thay đổi chỉ tồn tại trong phiên trình duyệt này và chưa được lưu lên máy chủ.",
+    "selectedCount": "Đã chọn {count}",
+    "documentsCount": "{count, plural, other {# tài liệu}}",
+    "pagesCount": "{count, plural, other {# trang}}",
+    "versionLabel": "Phiên bản {version}",
+    "previous": "Trước",
+    "next": "Tiếp",
+    "loadingWorkspace": "Đang tải không gian làm việc…"
+  },
+  "nav": {
+    "workspace": "Không gian làm việc",
+    "categories": "Danh mục tài liệu",
+    "management": "Quản trị",
+    "overview": "Tổng quan",
+    "allDocuments": "Tất cả tài liệu",
+    "recent": "Gần đây",
+    "starred": "Đã gắn sao",
+    "shared": "Được chia sẻ với tôi",
+    "team": "Thành viên",
+    "activity": "Nhật ký hoạt động",
+    "settings": "Cài đặt",
+    "collapse": "Thu gọn thanh bên",
+    "expand": "Mở rộng thanh bên",
+    "openMenu": "Mở menu điều hướng",
+    "home": "Trang chủ"
+  },
+  "header": {
+    "search": "Tìm kiếm tài liệu…",
+    "searchShort": "Tìm kiếm",
+    "searchEmpty": "Không tìm thấy tài liệu phù hợp.",
+    "searchDocuments": "Tài liệu",
+    "searchPages": "Trang",
+    "notifications": "Thông báo",
+    "markAllRead": "Đánh dấu đã đọc",
+    "noNotifications": "Bạn đã xem hết thông báo.",
+    "language": "Ngôn ngữ",
+    "profile": "Hồ sơ cá nhân",
+    "signOut": "Đăng xuất",
+    "signOutUnavailable": "Đăng nhập/đăng xuất sẽ có khi kết nối backend.",
+    "changePassword": "Đổi mật khẩu"
+  },
+  "theme": {
+    "label": "Giao diện",
+    "toggle": "Đổi giao diện sáng/tối",
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Theo hệ thống",
+    "lightDescription": "Nền trắng, sáng sủa — mặc định.",
+    "darkDescription": "Dịu mắt khi làm việc buổi tối.",
+    "systemDescription": "Tự động theo cài đặt của thiết bị."
+  },
+  "categories": {
+    "proposals": {
+      "name": "Đề xuất",
+      "description": "Proposal dự án và hợp tác"
+    },
+    "company-profiles": {
+      "name": "Hồ sơ năng lực",
+      "description": "Giới thiệu công ty và thương hiệu"
+    },
+    "quotations": {
+      "name": "Báo giá",
+      "description": "Bảng giá và báo giá dịch vụ"
+    },
+    "contracts": {
+      "name": "Hợp đồng",
+      "description": "Hợp đồng và mẫu pháp lý"
+    },
+    "presentations": {
+      "name": "Bài thuyết trình",
+      "description": "Pitch deck và kế hoạch"
+    },
+    "portfolios": {
+      "name": "Portfolio",
+      "description": "Dự án và sản phẩm tiêu biểu"
+    },
+    "brand-assets": {
+      "name": "Tài sản thương hiệu",
+      "description": "Logo, guideline và hình ảnh"
+    }
+  },
+  "documentTypes": {
+    "pdf": "PDF",
+    "docx": "Word",
+    "pptx": "PowerPoint",
+    "xlsx": "Excel",
+    "image": "Hình ảnh",
+    "link": "Liên kết ngoài"
+  },
+  "statuses": {
+    "draft": "Bản nháp",
+    "review": "Đang duyệt",
+    "approved": "Đã duyệt",
+    "archived": "Lưu trữ"
+  },
+  "visibility": {
+    "private": "Riêng tư",
+    "team": "Nội bộ",
+    "public": "Công khai",
+    "privateDescription": "Chỉ chủ sở hữu và người được mời.",
+    "teamDescription": "Mọi thành viên trong không gian làm việc.",
+    "publicDescription": "Bất kỳ ai có liên kết chia sẻ."
+  },
+  "roles": {
+    "superAdmin": "Super Admin",
+    "admin": "Quản trị viên",
+    "editor": "Biên tập viên",
+    "viewer": "Người xem",
+    "guest": "Khách bên ngoài",
+    "superAdminDescription": "Toàn quyền, bao gồm thanh toán và xoá không gian.",
+    "adminDescription": "Quản lý thành viên, cài đặt và mọi tài liệu.",
+    "editorDescription": "Tạo, chỉnh sửa và chia sẻ tài liệu.",
+    "viewerDescription": "Xem và tải tài liệu được phép.",
+    "guestDescription": "Chỉ xem tài liệu được chia sẻ trực tiếp."
+  },
+  "memberStatus": {
+    "active": "Đang hoạt động",
+    "invited": "Đã mời",
+    "suspended": "Tạm khoá"
+  },
+  "overview": {
+    "greetingMorning": "Chào buổi sáng, {name}",
+    "greetingAfternoon": "Chào buổi chiều, {name}",
+    "greetingEvening": "Chào buổi tối, {name}",
+    "subtitle": "Tất cả proposal, hồ sơ năng lực, báo giá và tài sản thương hiệu của Triệu Hỷ Media ở một nơi.",
+    "heroEyebrow": "Không gian tài liệu",
+    "heroCta": "Mở tài liệu",
+    "heroPinned": "Tài liệu nổi bật",
+    "metrics": {
+      "total": "Tổng tài liệu",
+      "totalHint": "Trên {count} thương hiệu",
+      "proposals": "Đề xuất đang mở",
+      "proposalsHint": "Bản nháp và đang duyệt",
+      "shared": "Đang chia sẻ công khai",
+      "sharedHint": "Có liên kết công khai",
+      "recent": "Cập nhật gần đây",
+      "recentHint": "Trong 7 ngày qua"
+    },
+    "quickActions": "Thao tác nhanh",
+    "actions": {
+      "newDocument": "Tài liệu mới",
+      "newDocumentHint": "Tạo hồ sơ tài liệu",
+      "upload": "Tải tệp lên",
+      "uploadHint": "PDF, Office, hình ảnh",
+      "folder": "Tạo thư mục",
+      "folderHint": "Sắp xếp theo dự án",
+      "share": "Chia sẻ tài liệu",
+      "shareHint": "Tạo liên kết công khai"
+    },
+    "recentDocuments": "Tài liệu gần đây",
+    "featuredCategories": "Danh mục nổi bật",
+    "brands": "Thương hiệu"
+  },
+  "documents": {
+    "allTitle": "Tất cả tài liệu",
+    "allDescription": "Duyệt, lọc và quản lý toàn bộ tài liệu trong không gian làm việc.",
+    "recentTitle": "Gần đây",
+    "recentDescription": "Tài liệu được cập nhật trong 14 ngày qua.",
+    "starredTitle": "Đã gắn sao",
+    "starredDescription": "Những tài liệu bạn đánh dấu để truy cập nhanh.",
+    "sharedTitle": "Được chia sẻ với tôi",
+    "sharedDescription": "Tài liệu đồng nghiệp đã chia sẻ trực tiếp cho bạn.",
+    "columns": {
+      "name": "Tên tài liệu",
+      "type": "Loại",
+      "category": "Danh mục",
+      "updated": "Cập nhật",
+      "owner": "Chủ sở hữu",
+      "visibility": "Quyền xem",
+      "status": "Trạng thái",
+      "size": "Dung lượng",
+      "actions": "Thao tác"
+    },
+    "toolbar": {
+      "search": "Tìm theo tiêu đề…",
+      "category": "Danh mục",
+      "type": "Loại tệp",
+      "status": "Trạng thái",
+      "allCategories": "Mọi danh mục",
+      "allTypes": "Mọi loại tệp",
+      "allStatuses": "Mọi trạng thái",
+      "sort": "Sắp xếp",
+      "sortUpdated": "Mới cập nhật",
+      "sortName": "Tên A–Z",
+      "sortStatus": "Trạng thái",
+      "gridView": "Dạng lưới",
+      "listView": "Dạng danh sách",
+      "filters": "Bộ lọc",
+      "resetFilters": "Xoá bộ lọc"
+    },
+    "folders": {
+      "title": "Thư mục",
+      "root": "Tất cả thư mục",
+      "items": "{count, plural, other {# mục}}"
+    },
+    "bulk": {
+      "star": "Gắn sao",
+      "delete": "Xoá",
+      "selectAll": "Chọn tất cả",
+      "selectRow": "Chọn tài liệu"
+    },
+    "actions": {
+      "open": "Mở tài liệu",
+      "star": "Gắn sao",
+      "unstar": "Bỏ gắn sao",
+      "rename": "Đổi tên",
+      "share": "Chia sẻ",
+      "download": "Tải xuống",
+      "copyLink": "Sao chép liên kết",
+      "delete": "Xoá"
+    },
+    "empty": {
+      "title": "Chưa có tài liệu nào",
+      "description": "Tải tệp lên hoặc tạo tài liệu mới để bắt đầu.",
+      "filteredTitle": "Không có kết quả phù hợp",
+      "filteredDescription": "Thử từ khoá khác hoặc xoá bớt bộ lọc.",
+      "starredTitle": "Chưa gắn sao tài liệu nào",
+      "starredDescription": "Gắn sao để truy cập nhanh những tài liệu quan trọng."
+    },
+    "toast": {
+      "starred": "Đã gắn sao “{title}”",
+      "unstarred": "Đã bỏ gắn sao “{title}”",
+      "bulkStarred": "Đã gắn sao {count} tài liệu",
+      "renamed": "Đã đổi tên thành “{title}”",
+      "deleted": "Đã chuyển {count} tài liệu vào thùng rác",
+      "uploaded": "Đã tải lên “{title}”",
+      "created": "Đã tạo “{title}”",
+      "folderCreated": "Đã tạo thư mục “{name}”",
+      "linkCopied": "Đã sao chép liên kết",
+      "downloadUnavailable": "Tài liệu này chưa có tệp để tải xuống.",
+      "visibilityUpdated": "Đã chuyển tài liệu sang công khai",
+      "shareSaved": "Đã lưu cài đặt chia sẻ"
+    }
+  },
+  "dialogs": {
+    "upload": {
+      "title": "Tải tệp lên",
+      "description": "Chọn tệp và điền thông tin. Bản hiện tại chỉ ghi nhận thông tin tệp trong phiên, chưa tải lên máy chủ.",
+      "dropzone": "Kéo thả tệp vào đây",
+      "browse": "hoặc chọn từ máy",
+      "hint": "PDF, DOCX, PPTX, XLSX, PNG, JPG — tối đa 200 MB",
+      "file": "Tệp",
+      "titleLabel": "Tiêu đề",
+      "categoryLabel": "Danh mục",
+      "brandLabel": "Thương hiệu",
+      "visibilityLabel": "Quyền xem",
+      "submit": "Thêm tài liệu",
+      "change": "Đổi tệp",
+      "notice": "Tệp được lưu trên máy chủ của công ty. PDF, Word, Excel và ảnh xem trực tiếp được; PowerPoint cần chuyển đổi sang PDF."
+    },
+    "newDocument": {
+      "title": "Tài liệu mới",
+      "description": "Tạo hồ sơ tài liệu với thông tin cơ bản. Nội dung tệp sẽ được bổ sung sau.",
+      "typeLabel": "Loại tài liệu",
+      "linkLabel": "Đường dẫn",
+      "linkPlaceholder": "https://",
+      "submit": "Tạo tài liệu"
+    },
+    "rename": {
+      "title": "Đổi tên tài liệu",
+      "label": "Tên mới",
+      "submit": "Đổi tên"
+    },
+    "delete": {
+      "title": "Xoá {count, plural, other {# tài liệu}}?",
+      "description": "Tài liệu sẽ bị gỡ khỏi danh sách. Ở bản dữ liệu mẫu, tải lại trang sẽ khôi phục.",
+      "confirm": "Xoá"
+    },
+    "folder": {
+      "title": "Tạo thư mục",
+      "description": "Thư mục giúp sắp xếp tài liệu theo dự án hoặc khách hàng.",
+      "nameLabel": "Tên thư mục",
+      "namePlaceholder": "VD: Đối tác OTT 2027",
+      "brandLabel": "Thương hiệu",
+      "submit": "Tạo thư mục"
+    },
+    "share": {
+      "title": "Chia sẻ tài liệu",
+      "description": "Tạo liên kết trang trình bày công khai để gửi đối tác.",
+      "documentLabel": "Tài liệu",
+      "linkLabel": "Liên kết công khai",
+      "enable": "Bật liên kết công khai",
+      "enableHint": "Khi bật, tài liệu sẽ chuyển sang chế độ công khai với người có liên kết.",
+      "allowDownload": "Cho phép tải xuống",
+      "password": "Mật khẩu liên kết",
+      "passwordPlaceholder": "Để trống nếu không cần mật khẩu",
+      "passwordSet": "Đã đặt mật khẩu. Nhập mật khẩu mới để thay, hoặc xoá.",
+      "removePassword": "Gỡ mật khẩu",
+      "expiry": "Hết hạn vào",
+      "noExpiry": "Không hết hạn",
+      "save": "Lưu cài đặt",
+      "preview": "Xem trang chia sẻ",
+      "views": "{count, plural, other {# lượt xem}}",
+      "pickDocument": "Chọn tài liệu để chia sẻ",
+      "noPermission": "Bạn không có quyền chia sẻ tài liệu này.",
+      "loading": "Đang tải cài đặt…"
+    }
+  },
+  "validation": {
+    "required": "Vui lòng nhập trường này.",
+    "titleMin": "Tiêu đề cần ít nhất {min} ký tự.",
+    "titleMax": "Tiêu đề tối đa {max} ký tự.",
+    "fileRequired": "Vui lòng chọn một tệp.",
+    "fileTooLarge": "Tệp vượt quá 200 MB.",
+    "email": "Email không hợp lệ.",
+    "url": "Đường dẫn không hợp lệ.",
+    "nameMin": "Tên cần ít nhất {min} ký tự.",
+    "passwordMin": "Mật khẩu cần ít nhất {min} ký tự."
+  },
+  "detail": {
+    "details": "Thông tin",
+    "owner": "Chủ sở hữu",
+    "brand": "Thương hiệu",
+    "created": "Ngày tạo",
+    "updated": "Cập nhật",
+    "size": "Dung lượng",
+    "pages": "Số trang",
+    "tags": "Thẻ",
+    "preview": "Xem trước",
+    "noPreview": "Chưa hỗ trợ xem trước tệp {type} trong trình duyệt.",
+    "noPreviewHint": "Tải xuống để mở bằng ứng dụng phù hợp.",
+    "pdfFallback": "Trình duyệt không hiển thị được PDF.",
+    "openExternal": "Mở liên kết",
+    "externalHint": "Tài liệu này là liên kết tới nội dung bên ngoài.",
+    "openInNewTab": "Mở trong tab mới",
+    "versions": "Lịch sử phiên bản",
+    "current": "Hiện tại",
+    "noVersions": "Chưa có lịch sử phiên bản.",
+    "related": "Tài liệu liên quan",
+    "noRelated": "Chưa có tài liệu liên quan.",
+    "notFoundTitle": "Không tìm thấy tài liệu",
+    "notFoundDescription": "Tài liệu có thể đã bị xoá hoặc bạn không có quyền truy cập.",
+    "backToDocuments": "Về danh sách tài liệu"
+  },
+  "publicShare": {
+    "presentedBy": "Trình bày bởi {name}",
+    "updated": "Cập nhật {date}",
+    "download": "Tải tài liệu",
+    "downloadDisabled": "Chủ sở hữu đã tắt quyền tải xuống",
+    "contact": "Liên hệ hợp tác",
+    "footerTagline": "Sản xuất nội dung, truyền thông và phim ngắn.",
+    "rights": "© {year} TRIỆU HỶ MEDIA. Bảo lưu mọi quyền.",
+    "notFoundTitle": "Liên kết không khả dụng",
+    "notFoundDescription": "Liên kết chia sẻ không tồn tại, đã hết hạn hoặc tài liệu không còn công khai.",
+    "goHome": "Về trang chủ",
+    "taxId": "MST"
+  },
+  "team": {
+    "title": "Thành viên",
+    "description": "Quản lý thành viên, lời mời, vai trò và quyền sở hữu tài liệu.",
+    "invite": "Mời thành viên",
+    "tabs": {
+      "members": "Thành viên",
+      "invitations": "Lời mời",
+      "roles": "Vai trò & quyền"
+    },
+    "columns": {
+      "member": "Thành viên",
+      "role": "Vai trò",
+      "status": "Trạng thái",
+      "documents": "Tài liệu sở hữu",
+      "lastActive": "Hoạt động gần nhất",
+      "actions": "Thao tác"
+    },
+    "changeRole": "Đổi vai trò",
+    "remove": "Gỡ khỏi không gian",
+    "resend": "Gửi lại lời mời",
+    "revoke": "Thu hồi",
+    "noInvitations": "Không có lời mời nào đang chờ.",
+    "roleChanged": "Đã đổi vai trò của {name} thành {role}",
+    "removed": "Đã gỡ {name} khỏi không gian làm việc",
+    "inviteSent": "Đã tạo lời mời cho {email}. Gửi email mời sẽ có khi cấu hình máy chủ thư.",
+    "inviteResent": "Gửi lại email mời sẽ có khi cấu hình máy chủ thư.",
+    "inviteRevoked": "Đã thu hồi lời mời của {email}",
+    "inviteTitle": "Mời thành viên",
+    "inviteDescription": "Người được mời sẽ nhận email tham gia không gian làm việc.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "ten@congty.vn",
+    "roleLabel": "Vai trò",
+    "nameLabel": "Họ tên",
+    "sendInvite": "Gửi lời mời",
+    "permission": "Quyền",
+    "permissions": {
+      "view": "Xem tài liệu",
+      "download": "Tải xuống",
+      "edit": "Tạo & chỉnh sửa",
+      "share": "Chia sẻ công khai",
+      "delete": "Xoá tài liệu",
+      "members": "Quản lý thành viên",
+      "settings": "Cài đặt không gian"
+    },
+    "securityNotice": "Quyền được kiểm tra ở máy chủ cho mọi thao tác; nút bị ẩn chỉ để giao diện gọn hơn.",
+    "createAccount": "Tạo tài khoản",
+    "createTitle": "Tạo tài khoản nhân viên",
+    "createDescription": "Nhân viên đăng nhập bằng email và mật khẩu tạm này, sau đó bắt buộc tự đổi mật khẩu.",
+    "titleLabel": "Chức danh",
+    "tempPassword": "Mật khẩu tạm",
+    "generate": "Tạo ngẫu nhiên",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép mật khẩu",
+    "created": "Đã tạo tài khoản cho {email}. Gửi email và mật khẩu tạm cho nhân viên.",
+    "resetPassword": "Đặt lại mật khẩu",
+    "resetTitle": "Đặt lại mật khẩu cho {name}",
+    "resetDescription": "Nhân viên sẽ đăng nhập bằng mật khẩu tạm này và phải đổi ngay.",
+    "resetDone": "Đã đặt lại mật khẩu cho {name}",
+    "submitCreate": "Tạo tài khoản",
+    "submitReset": "Đặt lại"
+  },
+  "activity": {
+    "title": "Nhật ký hoạt động",
+    "description": "Theo dõi ai đã làm gì với tài liệu của không gian làm việc.",
+    "filterAll": "Tất cả hoạt động",
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "earlier": "Trước đó",
+    "empty": "Chưa có hoạt động nào.",
+    "verbs": {
+      "created": "đã tạo",
+      "updated": "đã cập nhật",
+      "shared": "đã chia sẻ",
+      "downloaded": "đã tải xuống",
+      "renamed": "đã đổi tên",
+      "deleted": "đã xoá",
+      "commented": "đã bình luận về",
+      "invited": "đã mời"
+    }
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "description": "Tuỳ chỉnh không gian làm việc, giao diện, ngôn ngữ và bảo mật.",
+    "sections": {
+      "general": "Chung",
+      "appearance": "Giao diện",
+      "language": "Ngôn ngữ",
+      "members": "Thành viên",
+      "security": "Bảo mật",
+      "branding": "Thương hiệu"
+    },
+    "saved": "Đã lưu cài đặt giao diện trên thiết bị này",
+    "general": {
+      "title": "Thông tin không gian",
+      "description": "Tên và thông tin công ty hiển thị trong portal và trang chia sẻ.",
+      "workspaceName": "Tên không gian làm việc",
+      "companyName": "Tên công ty",
+      "companyInfo": "Giới thiệu công ty",
+      "website": "Website",
+      "logo": "Logo không gian",
+      "logoHint": "SVG hoặc PNG nền trong suốt, tối thiểu 256×256.",
+      "uploadLogo": "Tải logo lên",
+      "logoUnavailable": "Tải logo lên sẽ khả dụng khi có backend lưu trữ tệp."
+    },
+    "appearance": {
+      "title": "Giao diện",
+      "description": "Chọn giao diện sáng, tối hoặc theo hệ thống. Lựa chọn được lưu trên thiết bị này."
+    },
+    "language": {
+      "title": "Ngôn ngữ",
+      "description": "Ngôn ngữ hiển thị của toàn bộ giao diện. Tiêu đề và nội dung tài liệu giữ nguyên."
+    },
+    "members": {
+      "title": "Thành viên & vai trò",
+      "description": "Mời người mới, đổi vai trò và quản lý quyền sở hữu tài liệu.",
+      "manage": "Quản lý thành viên",
+      "summary": "{count, plural, other {# thành viên}} trong không gian"
+    },
+    "security": {
+      "title": "Bảo mật",
+      "description": "Phiên đăng nhập, mặc định chia sẻ và cấu hình quyền.",
+      "session": "Thời gian hết phiên",
+      "session8h": "8 giờ",
+      "session24h": "24 giờ",
+      "session7d": "7 ngày",
+      "defaultVisibility": "Quyền xem mặc định cho tài liệu mới",
+      "allowDownload": "Cho phép tải xuống trên liên kết mới",
+      "linkExpiry": "Liên kết công khai tự hết hạn sau 30 ngày",
+      "guestDownload": "Khách bên ngoài được tải xuống",
+      "editorsShare": "Biên tập viên được chia sẻ công khai",
+      "backendNotice": "Phiên đăng nhập, quyền xem/sửa/xoá và liên kết chia sẻ đã được máy chủ kiểm soát. Các tuỳ chọn mặc định dưới đây sẽ được lưu ở bản sau."
+    },
+    "branding": {
+      "title": "Thương hiệu",
+      "description": "Logo, màu nhấn và chân trang của trang chia sẻ công khai.",
+      "accent": "Màu nhấn",
+      "accentHint": "Áp dụng cho nút, liên kết và điểm nhấn.",
+      "footer": "Chân trang tài liệu công khai",
+      "preview": "Xem trước"
+    },
+    "notPersisted": "Lưu cài đặt không gian lên máy chủ sẽ có ở bản sau."
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "description": "Trang bạn tìm không tồn tại hoặc đã được di chuyển.",
+    "home": "Về Tổng quan"
+  },
+  "reader": {
+    "loading": "Đang tải tài liệu…",
+    "error": "Không mở được tài liệu này trong trình duyệt.",
+    "openInNewTab": "Mở trong tab mới",
+    "page": "Trang {current} / {total}",
+    "zoomIn": "Phóng to",
+    "zoomOut": "Thu nhỏ",
+    "fitWidth": "Vừa khung",
+    "sheet": "Trang tính",
+    "rowsTruncated": "Chỉ hiển thị {count} dòng đầu tiên.",
+    "convertedFromPptx": "Bản xem trực tiếp được chuyển từ tệp PowerPoint sang PDF."
+  },
+  "errors": {
+    "forbidden": "Bạn không có quyền thực hiện thao tác này.",
+    "not_found": "Không tìm thấy dữ liệu, có thể đã bị xoá.",
+    "bad_request": "Dữ liệu gửi lên không hợp lệ.",
+    "conflict": "Email này đã có trong không gian làm việc.",
+    "server_error": "Máy chủ gặp lỗi, vui lòng thử lại.",
+    "network": "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.",
+    "unauthorized": "Phiên đăng nhập đã hết hạn.",
+    "loadFailed": "Không tải được dữ liệu.",
+    "retry": "Thử lại"
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "subtitle": "Đăng nhập để vào không gian tài liệu Triệu Hỷ Media.",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "submit": "Đăng nhập",
+    "invalid": "Email hoặc mật khẩu không đúng.",
+    "welcome": "Chào mừng trở lại"
+  },
+  "publicLock": {
+    "title": "Tài liệu được bảo vệ",
+    "description": "Nhập mật khẩu do người gửi cung cấp để xem tài liệu.",
+    "password": "Mật khẩu",
+    "submit": "Mở tài liệu",
+    "wrong": "Mật khẩu không đúng."
+  },
+  "account": {
+    "title": "Đổi mật khẩu",
+    "description": "Nhập mật khẩu hiện tại và đặt mật khẩu mới.",
+    "firstLogin": "Chào {name}, đây là lần đăng nhập đầu tiên. Vui lòng đổi mật khẩu tạm do quản trị viên cấp trước khi tiếp tục.",
+    "current": "Mật khẩu hiện tại",
+    "tempPassword": "Mật khẩu tạm được cấp",
+    "new": "Mật khẩu mới",
+    "confirm": "Nhập lại mật khẩu mới",
+    "submit": "Đổi mật khẩu",
+    "success": "Đã đổi mật khẩu",
+    "mismatch": "Hai mật khẩu không khớp.",
+    "samePassword": "Mật khẩu mới phải khác mật khẩu hiện tại.",
+    "wrongCurrent": "Mật khẩu hiện tại không đúng.",
+    "failed": "Không đổi được mật khẩu, vui lòng thử lại."
+  }
+}

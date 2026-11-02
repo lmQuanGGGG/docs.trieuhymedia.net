@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+!.env.example
+
+# Tài liệu kinh doanh, không đưa lên git
+proposals/
+~$*
+
+# Sinh tự động từ pdfjs-dist khi npm install
+/public/pdf.worker.min.mjs
+
+# Tệp tải lên (kho lưu trữ local)
+/storage/

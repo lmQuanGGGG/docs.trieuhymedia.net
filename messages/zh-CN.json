@@ -1,0 +1,576 @@
+{
+  "meta": {
+    "title": "Triệu Hỷ Media Docs",
+    "description": "TRIỆU HỶ MEDIA 企业文档管理与分享门户。"
+  },
+  "common": {
+    "appName": "Triệu Hỷ Media Docs",
+    "workspace": "Triệu Hỷ Media",
+    "workspacePlan": "企业空间",
+    "cancel": "取消",
+    "save": "保存",
+    "saveChanges": "保存更改",
+    "delete": "删除",
+    "rename": "重命名",
+    "download": "下载",
+    "share": "分享",
+    "open": "打开",
+    "close": "关闭",
+    "copyLink": "复制链接",
+    "viewAll": "查看全部",
+    "back": "返回",
+    "clear": "取消选择",
+    "all": "全部",
+    "create": "创建",
+    "upload": "上传",
+    "more": "更多操作",
+    "you": "你",
+    "mockNotice": "当前使用示例数据。所有更改仅保留在本浏览器会话中，尚未保存到服务器。",
+    "selectedCount": "已选择 {count} 项",
+    "documentsCount": "{count, plural, other {# 个文档}}",
+    "pagesCount": "{count, plural, other {# 页}}",
+    "versionLabel": "版本 {version}",
+    "previous": "上一页",
+    "next": "下一页",
+    "loadingWorkspace": "正在加载工作区…"
+  },
+  "nav": {
+    "workspace": "工作区",
+    "categories": "文档分类",
+    "management": "管理",
+    "overview": "概览",
+    "allDocuments": "全部文档",
+    "recent": "最近",
+    "starred": "已加星标",
+    "shared": "与我共享",
+    "team": "成员",
+    "activity": "活动日志",
+    "settings": "设置",
+    "collapse": "收起侧边栏",
+    "expand": "展开侧边栏",
+    "openMenu": "打开导航菜单",
+    "home": "首页"
+  },
+  "header": {
+    "search": "搜索文档…",
+    "searchShort": "搜索",
+    "searchEmpty": "未找到匹配的文档。",
+    "searchDocuments": "文档",
+    "searchPages": "页面",
+    "notifications": "通知",
+    "markAllRead": "全部标为已读",
+    "noNotifications": "暂无新通知。",
+    "language": "语言",
+    "profile": "个人资料",
+    "signOut": "退出登录",
+    "signOutUnavailable": "连接后端后即可使用登录和退出功能。",
+    "changePassword": "修改密码"
+  },
+  "theme": {
+    "label": "外观",
+    "toggle": "切换浅色/深色模式",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统",
+    "lightDescription": "明亮的白色背景，默认外观。",
+    "darkDescription": "夜间工作更护眼。",
+    "systemDescription": "自动跟随设备设置。"
+  },
+  "categories": {
+    "proposals": {
+      "name": "提案",
+      "description": "项目与合作提案"
+    },
+    "company-profiles": {
+      "name": "公司简介",
+      "description": "公司与品牌介绍"
+    },
+    "quotations": {
+      "name": "报价",
+      "description": "价目表与服务报价"
+    },
+    "contracts": {
+      "name": "合同",
+      "description": "合同与法律模板"
+    },
+    "presentations": {
+      "name": "演示文稿",
+      "description": "路演材料与规划"
+    },
+    "portfolios": {
+      "name": "Portfolio",
+      "description": "代表项目与作品"
+    },
+    "brand-assets": {
+      "name": "品牌资产",
+      "description": "Logo、品牌规范与图片"
+    }
+  },
+  "documentTypes": {
+    "pdf": "PDF",
+    "docx": "Word",
+    "pptx": "PowerPoint",
+    "xlsx": "Excel",
+    "image": "图片",
+    "link": "外部链接"
+  },
+  "statuses": {
+    "draft": "草稿",
+    "review": "审核中",
+    "approved": "已批准",
+    "archived": "已归档"
+  },
+  "visibility": {
+    "private": "私密",
+    "team": "内部",
+    "public": "公开",
+    "privateDescription": "仅所有者和受邀者可见。",
+    "teamDescription": "工作区内所有成员可见。",
+    "publicDescription": "任何拥有分享链接的人可见。"
+  },
+  "roles": {
+    "superAdmin": "Super Admin",
+    "admin": "管理员",
+    "editor": "编辑者",
+    "viewer": "查看者",
+    "guest": "外部访客",
+    "superAdminDescription": "拥有全部权限，包括账单和删除工作区。",
+    "adminDescription": "管理成员、设置和所有文档。",
+    "editorDescription": "创建、编辑和分享文档。",
+    "viewerDescription": "查看和下载有权限的文档。",
+    "guestDescription": "仅可查看直接分享给其的文档。"
+  },
+  "memberStatus": {
+    "active": "活跃",
+    "invited": "已邀请",
+    "suspended": "已停用"
+  },
+  "overview": {
+    "greetingMorning": "早上好，{name}",
+    "greetingAfternoon": "下午好，{name}",
+    "greetingEvening": "晚上好，{name}",
+    "subtitle": "Triệu Hỷ Media 的所有提案、公司简介、报价和品牌资产，尽在一处。",
+    "heroEyebrow": "文档空间",
+    "heroCta": "打开文档",
+    "heroPinned": "精选文档",
+    "metrics": {
+      "total": "文档总数",
+      "totalHint": "覆盖 {count} 个品牌",
+      "proposals": "进行中的提案",
+      "proposalsHint": "草稿和审核中",
+      "shared": "公开分享中",
+      "sharedHint": "已生成公开链接",
+      "recent": "最近更新",
+      "recentHint": "过去 7 天内"
+    },
+    "quickActions": "快捷操作",
+    "actions": {
+      "newDocument": "新建文档",
+      "newDocumentHint": "创建文档记录",
+      "upload": "上传文件",
+      "uploadHint": "PDF、Office、图片",
+      "folder": "新建文件夹",
+      "folderHint": "按项目整理",
+      "share": "分享文档",
+      "shareHint": "创建公开链接"
+    },
+    "recentDocuments": "最近文档",
+    "featuredCategories": "精选分类",
+    "brands": "品牌"
+  },
+  "documents": {
+    "allTitle": "全部文档",
+    "allDescription": "浏览、筛选和管理工作区内的所有文档。",
+    "recentTitle": "最近",
+    "recentDescription": "过去 14 天内更新的文档。",
+    "starredTitle": "已加星标",
+    "starredDescription": "你加星标以便快速访问的文档。",
+    "sharedTitle": "与我共享",
+    "sharedDescription": "同事直接分享给你的文档。",
+    "columns": {
+      "name": "名称",
+      "type": "类型",
+      "category": "分类",
+      "updated": "更新时间",
+      "owner": "所有者",
+      "visibility": "可见范围",
+      "status": "状态",
+      "size": "大小",
+      "actions": "操作"
+    },
+    "toolbar": {
+      "search": "按标题搜索…",
+      "category": "分类",
+      "type": "文件类型",
+      "status": "状态",
+      "allCategories": "所有分类",
+      "allTypes": "所有文件类型",
+      "allStatuses": "所有状态",
+      "sort": "排序",
+      "sortUpdated": "最近更新",
+      "sortName": "名称 A–Z",
+      "sortStatus": "状态",
+      "gridView": "网格视图",
+      "listView": "列表视图",
+      "filters": "筛选",
+      "resetFilters": "清除筛选"
+    },
+    "folders": {
+      "title": "文件夹",
+      "root": "所有文件夹",
+      "items": "{count, plural, other {# 项}}"
+    },
+    "bulk": {
+      "star": "加星标",
+      "delete": "删除",
+      "selectAll": "全选",
+      "selectRow": "选择文档"
+    },
+    "actions": {
+      "open": "打开文档",
+      "star": "加星标",
+      "unstar": "取消星标",
+      "rename": "重命名",
+      "share": "分享",
+      "download": "下载",
+      "copyLink": "复制链接",
+      "delete": "删除"
+    },
+    "empty": {
+      "title": "暂无文档",
+      "description": "上传文件或新建文档即可开始。",
+      "filteredTitle": "没有匹配的结果",
+      "filteredDescription": "试试其他关键词，或减少筛选条件。",
+      "starredTitle": "暂无星标文档",
+      "starredDescription": "为重要文档加星标，方便快速访问。"
+    },
+    "toast": {
+      "starred": "已收藏「{title}」",
+      "unstarred": "已取消收藏「{title}」",
+      "bulkStarred": "已收藏 {count} 个文档",
+      "renamed": "已重命名为「{title}」",
+      "deleted": "已将 {count} 个文档移至回收站",
+      "uploaded": "已上传「{title}」",
+      "created": "已创建「{title}」",
+      "folderCreated": "已创建文件夹「{name}」",
+      "linkCopied": "链接已复制",
+      "downloadUnavailable": "该文档暂无可下载的文件。",
+      "visibilityUpdated": "文档已设为公开",
+      "shareSaved": "分享设置已保存"
+    }
+  },
+  "dialogs": {
+    "upload": {
+      "title": "上传文件",
+      "description": "选择文件并填写信息。当前版本仅在会话中记录文件信息，尚未上传到服务器。",
+      "dropzone": "将文件拖放到此处",
+      "browse": "或从设备中选择",
+      "hint": "PDF、DOCX、PPTX、XLSX、PNG、JPG，最大 200 MB",
+      "file": "文件",
+      "titleLabel": "标题",
+      "categoryLabel": "分类",
+      "brandLabel": "品牌",
+      "visibilityLabel": "可见范围",
+      "submit": "添加文档",
+      "change": "更换文件",
+      "notice": "文件存储在公司服务器上。PDF、Word、Excel 和图片可直接在浏览器中查看；PowerPoint 需转换为 PDF。"
+    },
+    "newDocument": {
+      "title": "新建文档",
+      "description": "填写基本信息以创建文档记录，文件内容可稍后补充。",
+      "typeLabel": "文档类型",
+      "linkLabel": "链接地址",
+      "linkPlaceholder": "https://",
+      "submit": "创建文档"
+    },
+    "rename": {
+      "title": "重命名文档",
+      "label": "新名称",
+      "submit": "重命名"
+    },
+    "delete": {
+      "title": "删除 {count, plural, other {# 个文档}}？",
+      "description": "文档将从列表中移除。使用示例数据时，刷新页面即可恢复。",
+      "confirm": "删除"
+    },
+    "folder": {
+      "title": "新建文件夹",
+      "description": "使用文件夹按项目或客户整理文档。",
+      "nameLabel": "文件夹名称",
+      "namePlaceholder": "例如：OTT 合作伙伴 2027",
+      "brandLabel": "品牌",
+      "submit": "创建文件夹"
+    },
+    "share": {
+      "title": "分享文档",
+      "description": "创建公开展示链接，发送给合作伙伴。",
+      "documentLabel": "文档",
+      "linkLabel": "公开链接",
+      "enable": "启用公开链接",
+      "enableHint": "启用后，持有链接的任何人都可查看该文档。",
+      "allowDownload": "允许下载",
+      "password": "链接密码",
+      "passwordPlaceholder": "留空则不设密码",
+      "passwordSet": "已设置密码。输入新密码可替换，或移除密码。",
+      "removePassword": "移除密码",
+      "expiry": "到期时间",
+      "noExpiry": "永不过期",
+      "save": "保存设置",
+      "preview": "查看分享页面",
+      "views": "{count} 次浏览",
+      "pickDocument": "选择要分享的文档",
+      "noPermission": "你没有分享此文档的权限。",
+      "loading": "正在加载设置…"
+    }
+  },
+  "validation": {
+    "required": "此项为必填项。",
+    "titleMin": "标题至少需要 {min} 个字符。",
+    "titleMax": "标题最多 {max} 个字符。",
+    "fileRequired": "请选择一个文件。",
+    "fileTooLarge": "文件超过 200 MB。",
+    "email": "邮箱地址无效。",
+    "url": "链接地址无效。",
+    "nameMin": "名称至少需要 {min} 个字符。",
+    "passwordMin": "密码至少需要 {min} 个字符。"
+  },
+  "detail": {
+    "details": "详细信息",
+    "owner": "所有者",
+    "brand": "品牌",
+    "created": "创建时间",
+    "updated": "更新时间",
+    "size": "大小",
+    "pages": "页数",
+    "tags": "标签",
+    "preview": "预览",
+    "noPreview": "暂不支持在浏览器中预览 {type} 文件。",
+    "noPreviewHint": "请下载后使用合适的应用打开。",
+    "pdfFallback": "浏览器无法显示此 PDF。",
+    "openExternal": "打开链接",
+    "externalHint": "此文档为指向外部内容的链接。",
+    "openInNewTab": "在新标签页中打开",
+    "versions": "版本历史",
+    "current": "当前",
+    "noVersions": "暂无版本历史。",
+    "related": "相关文档",
+    "noRelated": "暂无相关文档。",
+    "notFoundTitle": "未找到文档",
+    "notFoundDescription": "该文档可能已被删除，或你没有访问权限。",
+    "backToDocuments": "返回文档列表"
+  },
+  "publicShare": {
+    "presentedBy": "由 {name} 呈现",
+    "updated": "更新于 {date}",
+    "download": "下载文档",
+    "downloadDisabled": "所有者已关闭下载权限",
+    "contact": "商务合作",
+    "footerTagline": "内容制作、传媒与短剧。",
+    "rights": "© {year} TRIỆU HỶ MEDIA. 保留所有权利。",
+    "notFoundTitle": "链接不可用",
+    "notFoundDescription": "该分享链接不存在、已过期，或文档已不再公开。",
+    "goHome": "返回首页",
+    "taxId": "税号"
+  },
+  "team": {
+    "title": "成员",
+    "description": "管理成员、邀请、角色和文档所有权。",
+    "invite": "邀请成员",
+    "tabs": {
+      "members": "成员",
+      "invitations": "邀请",
+      "roles": "角色与权限"
+    },
+    "columns": {
+      "member": "成员",
+      "role": "角色",
+      "status": "状态",
+      "documents": "拥有的文档",
+      "lastActive": "最近活跃",
+      "actions": "操作"
+    },
+    "changeRole": "更改角色",
+    "remove": "从工作区移除",
+    "resend": "重新发送邀请",
+    "revoke": "撤销",
+    "noInvitations": "暂无待处理的邀请。",
+    "roleChanged": "已将 {name} 的角色更改为 {role}",
+    "removed": "已将 {name} 移出工作区",
+    "inviteSent": "已为 {email} 创建邀请。配置邮件服务器后即可发送邀请邮件。",
+    "inviteResent": "配置邮件服务器后即可重新发送邀请邮件。",
+    "inviteRevoked": "已撤销 {email} 的邀请",
+    "inviteTitle": "邀请成员",
+    "inviteDescription": "受邀者将收到加入工作区的邮件。",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "name@company.com",
+    "roleLabel": "角色",
+    "nameLabel": "姓名",
+    "sendInvite": "发送邀请",
+    "permission": "权限",
+    "permissions": {
+      "view": "查看文档",
+      "download": "下载",
+      "edit": "创建与编辑",
+      "share": "公开分享",
+      "delete": "删除文档",
+      "members": "管理成员",
+      "settings": "工作区设置"
+    },
+    "securityNotice": "每项操作的权限都在服务器端检查；隐藏按钮仅为界面简洁。",
+    "createAccount": "创建账号",
+    "createTitle": "创建员工账号",
+    "createDescription": "员工使用此邮箱和临时密码登录，之后必须自行修改密码。",
+    "titleLabel": "职位",
+    "tempPassword": "临时密码",
+    "generate": "随机生成",
+    "copy": "复制",
+    "copied": "密码已复制",
+    "created": "已为 {email} 创建账号。请将邮箱和临时密码发送给员工。",
+    "resetPassword": "重置密码",
+    "resetTitle": "为 {name} 重置密码",
+    "resetDescription": "员工将使用此临时密码登录，并需立即修改。",
+    "resetDone": "已为 {name} 重置密码",
+    "submitCreate": "创建账号",
+    "submitReset": "重置"
+  },
+  "activity": {
+    "title": "活动日志",
+    "description": "查看谁对工作区中的文档执行了哪些操作。",
+    "filterAll": "全部活动",
+    "today": "今天",
+    "yesterday": "昨天",
+    "earlier": "更早",
+    "empty": "暂无活动。",
+    "verbs": {
+      "created": "创建了",
+      "updated": "更新了",
+      "shared": "分享了",
+      "downloaded": "下载了",
+      "renamed": "重命名了",
+      "deleted": "删除了",
+      "commented": "评论了",
+      "invited": "邀请了"
+    }
+  },
+  "settings": {
+    "title": "设置",
+    "description": "自定义工作区、外观、语言和安全设置。",
+    "sections": {
+      "general": "常规",
+      "appearance": "外观",
+      "language": "语言",
+      "members": "成员",
+      "security": "安全",
+      "branding": "品牌"
+    },
+    "saved": "外观设置已保存在此设备",
+    "general": {
+      "title": "工作区信息",
+      "description": "在门户和分享页中显示的名称与公司信息。",
+      "workspaceName": "工作区名称",
+      "companyName": "公司名称",
+      "companyInfo": "公司简介",
+      "website": "网站",
+      "logo": "工作区 Logo",
+      "logoHint": "透明背景的 SVG 或 PNG，至少 256×256。",
+      "uploadLogo": "上传 Logo",
+      "logoUnavailable": "接入后端文件存储后即可上传 Logo。"
+    },
+    "appearance": {
+      "title": "外观",
+      "description": "选择浅色、深色或跟随系统。设置将保存在此设备上。"
+    },
+    "language": {
+      "title": "语言",
+      "description": "整个界面的显示语言。文档标题和内容保持不变。"
+    },
+    "members": {
+      "title": "成员与角色",
+      "description": "邀请新成员、更改角色并管理文档所有权。",
+      "manage": "管理成员",
+      "summary": "工作区共有 {count, plural, other {# 名成员}}"
+    },
+    "security": {
+      "title": "安全",
+      "description": "登录会话、默认分享设置和权限配置。",
+      "session": "会话超时",
+      "session8h": "8 小时",
+      "session24h": "24 小时",
+      "session7d": "7 天",
+      "defaultVisibility": "新文档的默认可见范围",
+      "allowDownload": "新链接允许下载",
+      "linkExpiry": "公开链接 30 天后自动过期",
+      "guestDownload": "外部访客可下载",
+      "editorsShare": "编辑者可公开分享",
+      "backendNotice": "登录会话、查看/编辑/删除权限和分享链接现已由服务器控制。以下默认选项将在后续版本中保存。"
+    },
+    "branding": {
+      "title": "品牌",
+      "description": "公开分享页的 Logo、强调色和页脚。",
+      "accent": "强调色",
+      "accentHint": "应用于按钮、链接和高亮元素。",
+      "footer": "公开文档页脚",
+      "preview": "预览"
+    },
+    "notPersisted": "工作区设置保存到服务器将在后续版本提供。"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "description": "你访问的页面不存在或已被移动。",
+    "home": "返回概览"
+  },
+  "reader": {
+    "loading": "正在加载文档…",
+    "error": "无法在浏览器中打开此文档。",
+    "openInNewTab": "在新标签页打开",
+    "page": "第 {current} / {total} 页",
+    "zoomIn": "放大",
+    "zoomOut": "缩小",
+    "fitWidth": "适应宽度",
+    "sheet": "工作表",
+    "rowsTruncated": "仅显示前 {count} 行。",
+    "convertedFromPptx": "此预览为由 PowerPoint 文件转换的 PDF。"
+  },
+  "errors": {
+    "forbidden": "你没有执行此操作的权限。",
+    "not_found": "未找到数据，可能已被删除。",
+    "bad_request": "提交的数据无效。",
+    "conflict": "该邮箱已在工作区中。",
+    "server_error": "服务器出错，请重试。",
+    "network": "无法连接服务器，请检查网络后重试。",
+    "unauthorized": "登录已过期。",
+    "loadFailed": "无法加载数据。",
+    "retry": "重试"
+  },
+  "login": {
+    "title": "登录",
+    "subtitle": "登录 Triệu Hỷ Media 文档工作区。",
+    "email": "邮箱",
+    "password": "密码",
+    "submit": "登录",
+    "invalid": "邮箱或密码错误。",
+    "welcome": "欢迎回来"
+  },
+  "publicLock": {
+    "title": "受保护的文档",
+    "description": "请输入发送方提供的密码以查看文档。",
+    "password": "密码",
+    "submit": "打开文档",
+    "wrong": "密码错误。"
+  },
+  "account": {
+    "title": "修改密码",
+    "description": "输入当前密码并设置新密码。",
+    "firstLogin": "{name}，你好！这是你首次登录，请先修改管理员提供的临时密码。",
+    "current": "当前密码",
+    "tempPassword": "临时密码",
+    "new": "新密码",
+    "confirm": "确认新密码",
+    "submit": "修改密码",
+    "success": "密码已修改",
+    "mismatch": "两次输入的密码不一致。",
+    "samePassword": "新密码不能与当前密码相同。",
+    "wrongCurrent": "当前密码不正确。",
+    "failed": "修改密码失败，请重试。"
+  }
+}

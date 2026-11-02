@@ -1,0 +1,315 @@
+// Schema PostgreSQL cho Triệu Hỷ Media Docs (Prisma 6).
+// Kết nối: DATABASE_URL / SHADOW_DATABASE_URL trong .env.local (xem docs/database.md).
+// Id là chuỗi (cuid) để khớp với mock data của frontend (src/types).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+// ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+  VIEWER
+  EXTERNAL_GUEST
+}
+
+enum MemberStatus {
+  ACTIVE
+  INVITED
+  SUSPENDED
+}
+
+enum DocumentType {
+  PDF
+  DOCX
+  PPTX
+  XLSX
+  IMAGE
+  LINK
+}
+
+enum DocumentCategory {
+  PROPOSAL
+  COMPANY_PROFILE
+  QUOTATION
+  CONTRACT
+  PRESENTATION
+  PORTFOLIO
+  BRAND_ASSET
+}
+
+enum DocumentStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum Visibility {
+  PRIVATE
+  TEAM
+  PUBLIC
+}
+
+enum AccessPermission {
+  VIEW
+  EDIT
+  OWNER
+}
+
+enum ActivityAction {
+  CREATED
+  UPDATED
+  SHARED
+  DOWNLOADED
+  RENAMED
+  DELETED
+  RESTORED
+  COMMENTED
+  INVITED
+  VIEWED
+}
+
+// ─── Workspace & thành viên ─────────────────────────────────────────────────
+
+/// Cấu hình workspace (thường chỉ có 1 bản ghi).
+model Workspace {
+  id           String   @id @default(cuid())
+  name         String
+  companyInfo  String?
+  logoUrl      String?
+  accentColor  String   @default("#9B4148")
+  publicFooter String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("workspaces")
+}
+
+model Member {
+  id           String       @id @default(cuid())
+  name         String
+  email        String       @unique
+  avatarUrl    String?
+  /// Màu nền avatar dạng hex (khớp Member.color ở frontend)
+  color        String?
+  role         Role         @default(VIEWER)
+  status       MemberStatus @default(INVITED)
+  title        String?
+  /// bcrypt hash; null = chưa đặt mật khẩu (thành viên được mời chưa kích hoạt)
+  passwordHash String?
+  /// true khi admin vừa tạo/đặt lại mật khẩu: lần đăng nhập tới phải tự đổi
+  mustChangePassword Boolean @default(false)
+  /// Mốc người dùng bấm "Đánh dấu đã đọc" thông báo
+  notificationsReadAt DateTime?
+  createdAt    DateTime     @default(now())
+  lastActiveAt DateTime?
+
+  ownedDocuments    Document[]        @relation("DocumentOwner")
+  createdFolders    Folder[]          @relation("FolderCreator")
+  createdVersions   DocumentVersion[] @relation("VersionCreator")
+  createdShareLinks ShareLink[]       @relation("ShareLinkCreator")
+  sentInvitations   Invitation[]      @relation("InvitationSender")
+  stars             DocumentStar[]
+  documentAccesses  DocumentAccess[]
+  activities        ActivityLog[]
+
+  @@index([role])
+  @@index([status])
+  @@map("members")
+}
+
+model Invitation {
+  id          String    @id @default(cuid())
+  email       String
+  role        Role
+  invitedById String
+  token       String    @unique
+  expiresAt   DateTime
+  acceptedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  invitedBy Member @relation("InvitationSender", fields: [invitedById], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@map("invitations")
+}
+
+// ─── Thư mục & tài liệu ─────────────────────────────────────────────────────
+
+model Folder {
+  id          String   @id @default(cuid())
+  name        String
+  parentId    String?
+  /// Một trong: Triệu Hỷ Media, HỶ GARDEN, Coco Drama, TASTING
+  brand       String?
+  color       String?
+  createdById String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  parent    Folder?    @relation("FolderTree", fields: [parentId], references: [id], onDelete: Cascade)
+  children  Folder[]   @relation("FolderTree")
+  createdBy Member     @relation("FolderCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  documents Document[]
+
+  @@index([parentId])
+  @@index([brand])
+  @@map("folders")
+}
+
+model Document {
+  id          String           @id @default(cuid())
+  title       String
+  description String?
+  type        DocumentType
+  category    DocumentCategory
+  /// Một trong: Triệu Hỷ Media, HỶ GARDEN, Coco Drama, TASTING
+  brand       String
+  status      DocumentStatus   @default(DRAFT)
+  visibility  Visibility       @default(TEAM)
+  folderId    String?
+  ownerId     String
+  /// Khoá tệp gốc trong kho lưu trữ (STORAGE_DIR), không phải URL công khai
+  fileUrl     String?
+  /// Khoá bản PDF để đọc trực tiếp (PDF gốc hoặc PDF chuyển từ PPTX)
+  previewUrl  String?
+  externalUrl String?
+  sizeBytes   BigInt?
+  mimeType    String?
+  pages       Int?
+  tags        String[]         @default([])
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  /// Soft delete: khác null nghĩa là đang ở thùng rác
+  deletedAt   DateTime?
+
+  folder     Folder?           @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  owner      Member            @relation("DocumentOwner", fields: [ownerId], references: [id], onDelete: Restrict)
+  versions   DocumentVersion[]
+  stars      DocumentStar[]
+  accesses   DocumentAccess[]
+  shareLinks ShareLink[]
+  activities ActivityLog[]
+
+  @@index([category, updatedAt(sort: Desc)])
+  @@index([folderId, updatedAt(sort: Desc)])
+  @@index([brand, updatedAt(sort: Desc)])
+  @@index([ownerId])
+  @@index([updatedAt(sort: Desc)])
+  @@index([deletedAt])
+  @@index([tags], type: Gin)
+  @@map("documents")
+}
+
+model DocumentVersion {
+  id          String   @id @default(cuid())
+  documentId  String
+  version     Int
+  fileUrl     String
+  sizeBytes   BigInt
+  note        String?
+  createdById String
+  createdAt   DateTime @default(now())
+
+  document  Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  createdBy Member   @relation("VersionCreator", fields: [createdById], references: [id], onDelete: Restrict)
+
+  @@unique([documentId, version])
+  @@map("document_versions")
+}
+
+model DocumentStar {
+  memberId   String
+  documentId String
+  createdAt  DateTime @default(now())
+
+  member   Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@id([memberId, documentId])
+  @@index([documentId])
+  @@map("document_stars")
+}
+
+/// Quyền theo từng tài liệu; dùng cho mục "Shared with me".
+model DocumentAccess {
+  documentId String
+  memberId   String
+  permission AccessPermission @default(VIEW)
+  createdAt  DateTime         @default(now())
+
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  member   Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@id([documentId, memberId])
+  @@index([memberId])
+  @@map("document_accesses")
+}
+
+// ─── Chia sẻ công khai ──────────────────────────────────────────────────────
+
+model ShareLink {
+  id            String    @id @default(cuid())
+  documentId    String
+  token         String    @unique
+  /// Hash (argon2/bcrypt) của mật khẩu link, không bao giờ lưu plain text
+  passwordHash  String?
+  expiresAt     DateTime?
+  allowDownload Boolean   @default(false)
+  isActive      Boolean   @default(true)
+  createdById   String
+  createdAt     DateTime  @default(now())
+
+  document  Document    @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  createdBy Member      @relation("ShareLinkCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  views     ShareView[]
+
+  @@index([documentId])
+  @@map("share_links")
+}
+
+model ShareView {
+  id          String   @id @default(cuid())
+  shareLinkId String
+  viewedAt    DateTime @default(now())
+  country     String?
+  userAgent   String?
+
+  shareLink ShareLink @relation(fields: [shareLinkId], references: [id], onDelete: Cascade)
+
+  @@index([shareLinkId, viewedAt(sort: Desc)])
+  @@map("share_views")
+}
+
+// ─── Nhật ký hoạt động ──────────────────────────────────────────────────────
+
+model ActivityLog {
+  id         String         @id @default(cuid())
+  actorId    String
+  action     ActivityAction
+  documentId String?
+  /// Loại đối tượng: document | folder | member | share_link | workspace
+  targetType String
+  /// Tên hiển thị của đối tượng tại thời điểm ghi log
+  targetName String?
+  metadata   Json           @default("{}")
+  createdAt  DateTime       @default(now())
+
+  actor    Member    @relation(fields: [actorId], references: [id], onDelete: Cascade)
+  document Document? @relation(fields: [documentId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt(sort: Desc)])
+  @@index([documentId, createdAt(sort: Desc)])
+  @@index([actorId, createdAt(sort: Desc)])
+  @@map("activity_logs")
+}

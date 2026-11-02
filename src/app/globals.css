@@ -1,26 +1,202 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), var(--font-noto-sc), ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-canvas: var(--canvas);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+  --shadow-float: var(--shadow-float);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Light — mặc định */
+:root {
+  --radius: 0.5rem;
+  --background: #ffffff;
+  --canvas: #ffffff;
+  --foreground: #18181b;
+  --card: #ffffff;
+  --card-foreground: #18181b;
+  --popover: #ffffff;
+  --popover-foreground: #18181b;
+  --primary: #4caf50;
+  --primary-foreground: #ffffff;
+  --brand: #2f9142;
+  --brand-soft: #eaf6eb;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
+  --destructive: #c0392b;
+  --success: #3f7d58;
+  --warning: #b7791f;
+  --border: #e9eaec;
+  --input: #e4e4e7;
+  --ring: #4caf50;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #18181b;
+  --sidebar-primary: #4caf50;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgb(24 24 27 / 0.045);
+  --sidebar-accent-foreground: #18181b;
+  --sidebar-border: #e9eaec;
+  --sidebar-ring: #4caf50;
+
+  --shadow-soft: 0 1px 2px rgb(24 24 27 / 0.03), 0 8px 28px -6px rgb(24 24 27 / 0.07);
+  --shadow-lift: 0 2px 4px rgb(24 24 27 / 0.04), 0 18px 44px -10px rgb(24 24 27 / 0.13);
+  --shadow-float: 0 1px 1px rgb(24 24 27 / 0.03), 0 24px 64px -16px rgb(24 24 27 / 0.18);
+  --glass-bg: rgb(255 255 255 / 0.86);
+  --glass-highlight: transparent;
+}
+
+/* Dark */
+.dark {
+  --background: #111214;
+  --canvas: #111214;
+  --foreground: #f5f5f5;
+  --card: #1c1d20;
+  --card-foreground: #f5f5f5;
+  --popover: #1c1d20;
+  --popover-foreground: #f5f5f5;
+  --primary: #4caf50;
+  --primary-foreground: #ffffff;
+  --brand: #7ccf7f;
+  --brand-soft: rgb(92 191 96 / 0.15);
+  --secondary: #232428;
+  --secondary-foreground: #f5f5f5;
+  --muted: #232428;
+  --muted-foreground: #a1a1aa;
+  --accent: #26272b;
+  --accent-foreground: #f5f5f5;
+  --destructive: #e0796f;
+  --success: #6fb98c;
+  --warning: #e0a94f;
+  --border: #2b2d31;
+  --input: #2f3136;
+  --ring: #5cbf60;
+  --sidebar: rgb(21 22 24 / 0.78);
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #4caf50;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgb(255 255 255 / 0.05);
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #2b2d31;
+  --sidebar-ring: #5cbf60;
+
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -8px rgb(0 0 0 / 0.45);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.35), 0 20px 48px -12px rgb(0 0 0 / 0.6);
+  --shadow-float: 0 1px 1px rgb(0 0 0 / 0.3), 0 28px 70px -18px rgb(0 0 0 / 0.7);
+  --glass-bg: rgb(28 29 32 / 0.66);
+  --glass-highlight: transparent;
+}
+
+/* Bề mặt card: không viền, đổ bóng mềm */
+@utility surface {
+  background-color: var(--card);
+  border-radius: calc(var(--radius) * 2);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility surface-interactive {
+  transition:
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 180ms ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Kính mờ cho chrome: sidebar, header, menu nổi */
+@utility glass {
+  background-color: var(--glass-bg);
+  backdrop-filter: saturate(160%) blur(20px);
+  -webkit-backdrop-filter: saturate(160%) blur(20px);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,0 +1,576 @@
+{
+  "meta": {
+    "title": "Triệu Hỷ Media Docs",
+    "description": "The document management and sharing portal for TRIỆU HỶ MEDIA."
+  },
+  "common": {
+    "appName": "Triệu Hỷ Media Docs",
+    "workspace": "Triệu Hỷ Media",
+    "workspacePlan": "Business workspace",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saveChanges": "Save changes",
+    "delete": "Delete",
+    "rename": "Rename",
+    "download": "Download",
+    "share": "Share",
+    "open": "Open",
+    "close": "Close",
+    "copyLink": "Copy link",
+    "viewAll": "View all",
+    "back": "Back",
+    "clear": "Clear selection",
+    "all": "All",
+    "create": "Create",
+    "upload": "Upload",
+    "more": "More actions",
+    "you": "You",
+    "mockNotice": "You're viewing sample data. Changes exist only in this browser session and are not saved to the server.",
+    "selectedCount": "{count} selected",
+    "documentsCount": "{count, plural, one {# document} other {# documents}}",
+    "pagesCount": "{count, plural, one {# page} other {# pages}}",
+    "versionLabel": "Version {version}",
+    "previous": "Previous",
+    "next": "Next",
+    "loadingWorkspace": "Loading workspace…"
+  },
+  "nav": {
+    "workspace": "Workspace",
+    "categories": "Categories",
+    "management": "Admin",
+    "overview": "Overview",
+    "allDocuments": "All documents",
+    "recent": "Recent",
+    "starred": "Starred",
+    "shared": "Shared with me",
+    "team": "Members",
+    "activity": "Activity log",
+    "settings": "Settings",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "openMenu": "Open navigation menu",
+    "home": "Home"
+  },
+  "header": {
+    "search": "Search documents…",
+    "searchShort": "Search",
+    "searchEmpty": "No matching documents.",
+    "searchDocuments": "Documents",
+    "searchPages": "Pages",
+    "notifications": "Notifications",
+    "markAllRead": "Mark all as read",
+    "noNotifications": "You're all caught up.",
+    "language": "Language",
+    "profile": "Profile",
+    "signOut": "Sign out",
+    "signOutUnavailable": "Sign in and sign out will be available once the backend is connected.",
+    "changePassword": "Change password"
+  },
+  "theme": {
+    "label": "Appearance",
+    "toggle": "Toggle light/dark mode",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "lightDescription": "Bright, clean white background — the default.",
+    "darkDescription": "Easier on the eyes for evening work.",
+    "systemDescription": "Follows your device settings."
+  },
+  "categories": {
+    "proposals": {
+      "name": "Proposals",
+      "description": "Project and partnership proposals"
+    },
+    "company-profiles": {
+      "name": "Company profiles",
+      "description": "Company and brand introductions"
+    },
+    "quotations": {
+      "name": "Quotations",
+      "description": "Rate cards and service quotes"
+    },
+    "contracts": {
+      "name": "Contracts",
+      "description": "Contracts and legal templates"
+    },
+    "presentations": {
+      "name": "Presentations",
+      "description": "Pitch decks and plans"
+    },
+    "portfolios": {
+      "name": "Portfolio",
+      "description": "Featured projects and productions"
+    },
+    "brand-assets": {
+      "name": "Brand assets",
+      "description": "Logos, guidelines and imagery"
+    }
+  },
+  "documentTypes": {
+    "pdf": "PDF",
+    "docx": "Word",
+    "pptx": "PowerPoint",
+    "xlsx": "Excel",
+    "image": "Image",
+    "link": "External link"
+  },
+  "statuses": {
+    "draft": "Draft",
+    "review": "In review",
+    "approved": "Approved",
+    "archived": "Archived"
+  },
+  "visibility": {
+    "private": "Private",
+    "team": "Internal",
+    "public": "Public",
+    "privateDescription": "Only the owner and invited people.",
+    "teamDescription": "Everyone in the workspace.",
+    "publicDescription": "Anyone with the share link."
+  },
+  "roles": {
+    "superAdmin": "Super Admin",
+    "admin": "Admin",
+    "editor": "Editor",
+    "viewer": "Viewer",
+    "guest": "External guest",
+    "superAdminDescription": "Full access, including billing and deleting the workspace.",
+    "adminDescription": "Manage members, settings and all documents.",
+    "editorDescription": "Create, edit and share documents.",
+    "viewerDescription": "View and download permitted documents.",
+    "guestDescription": "View only documents shared with them directly."
+  },
+  "memberStatus": {
+    "active": "Active",
+    "invited": "Invited",
+    "suspended": "Suspended"
+  },
+  "overview": {
+    "greetingMorning": "Good morning, {name}",
+    "greetingAfternoon": "Good afternoon, {name}",
+    "greetingEvening": "Good evening, {name}",
+    "subtitle": "Every proposal, company profile, quotation and brand asset from Triệu Hỷ Media in one place.",
+    "heroEyebrow": "Document workspace",
+    "heroCta": "Open document",
+    "heroPinned": "Featured document",
+    "metrics": {
+      "total": "Total documents",
+      "totalHint": "Across {count} brands",
+      "proposals": "Open proposals",
+      "proposalsHint": "Drafts and in review",
+      "shared": "Shared publicly",
+      "sharedHint": "With a public link",
+      "recent": "Recently updated",
+      "recentHint": "In the last 7 days"
+    },
+    "quickActions": "Quick actions",
+    "actions": {
+      "newDocument": "New document",
+      "newDocumentHint": "Create a document record",
+      "upload": "Upload file",
+      "uploadHint": "PDF, Office, images",
+      "folder": "New folder",
+      "folderHint": "Organize by project",
+      "share": "Share document",
+      "shareHint": "Create a public link"
+    },
+    "recentDocuments": "Recent documents",
+    "featuredCategories": "Featured categories",
+    "brands": "Brands"
+  },
+  "documents": {
+    "allTitle": "All documents",
+    "allDescription": "Browse, filter and manage every document in the workspace.",
+    "recentTitle": "Recent",
+    "recentDescription": "Documents updated in the last 14 days.",
+    "starredTitle": "Starred",
+    "starredDescription": "Documents you've starred for quick access.",
+    "sharedTitle": "Shared with me",
+    "sharedDescription": "Documents your colleagues shared with you directly.",
+    "columns": {
+      "name": "Name",
+      "type": "Type",
+      "category": "Category",
+      "updated": "Updated",
+      "owner": "Owner",
+      "visibility": "Visibility",
+      "status": "Status",
+      "size": "Size",
+      "actions": "Actions"
+    },
+    "toolbar": {
+      "search": "Search by title…",
+      "category": "Category",
+      "type": "File type",
+      "status": "Status",
+      "allCategories": "All categories",
+      "allTypes": "All file types",
+      "allStatuses": "All statuses",
+      "sort": "Sort",
+      "sortUpdated": "Last updated",
+      "sortName": "Name A–Z",
+      "sortStatus": "Status",
+      "gridView": "Grid view",
+      "listView": "List view",
+      "filters": "Filters",
+      "resetFilters": "Clear filters"
+    },
+    "folders": {
+      "title": "Folders",
+      "root": "All folders",
+      "items": "{count, plural, one {# item} other {# items}}"
+    },
+    "bulk": {
+      "star": "Star",
+      "delete": "Delete",
+      "selectAll": "Select all",
+      "selectRow": "Select document"
+    },
+    "actions": {
+      "open": "Open document",
+      "star": "Star",
+      "unstar": "Unstar",
+      "rename": "Rename",
+      "share": "Share",
+      "download": "Download",
+      "copyLink": "Copy link",
+      "delete": "Delete"
+    },
+    "empty": {
+      "title": "No documents yet",
+      "description": "Upload a file or create a new document to get started.",
+      "filteredTitle": "No matching results",
+      "filteredDescription": "Try a different keyword or remove some filters.",
+      "starredTitle": "No starred documents",
+      "starredDescription": "Star important documents for quick access."
+    },
+    "toast": {
+      "starred": "Starred “{title}”",
+      "unstarred": "Removed star from “{title}”",
+      "bulkStarred": "Starred {count, plural, one {# document} other {# documents}}",
+      "renamed": "Renamed to “{title}”",
+      "deleted": "Moved {count, plural, one {# document} other {# documents}} to trash",
+      "uploaded": "Uploaded “{title}”",
+      "created": "Created “{title}”",
+      "folderCreated": "Created folder “{name}”",
+      "linkCopied": "Link copied",
+      "downloadUnavailable": "This document has no file to download yet.",
+      "visibilityUpdated": "Document is now public",
+      "shareSaved": "Sharing settings saved"
+    }
+  },
+  "dialogs": {
+    "upload": {
+      "title": "Upload file",
+      "description": "Choose a file and fill in the details. This version only records file details in the session; nothing is uploaded to the server yet.",
+      "dropzone": "Drag and drop a file here",
+      "browse": "or browse your device",
+      "hint": "PDF, DOCX, PPTX, XLSX, PNG, JPG — up to 200 MB",
+      "file": "File",
+      "titleLabel": "Title",
+      "categoryLabel": "Category",
+      "brandLabel": "Brand",
+      "visibilityLabel": "Visibility",
+      "submit": "Add document",
+      "change": "Change file",
+      "notice": "Files are stored on the company server. PDF, Word, Excel and images open in the browser; PowerPoint needs conversion to PDF."
+    },
+    "newDocument": {
+      "title": "New document",
+      "description": "Create a document record with basic details. File content can be added later.",
+      "typeLabel": "Document type",
+      "linkLabel": "URL",
+      "linkPlaceholder": "https://",
+      "submit": "Create document"
+    },
+    "rename": {
+      "title": "Rename document",
+      "label": "New name",
+      "submit": "Rename"
+    },
+    "delete": {
+      "title": "Delete {count, plural, one {# document} other {# documents}}?",
+      "description": "Documents will be removed from the list. With sample data, reloading the page restores them.",
+      "confirm": "Delete"
+    },
+    "folder": {
+      "title": "New folder",
+      "description": "Folders help organize documents by project or client.",
+      "nameLabel": "Folder name",
+      "namePlaceholder": "e.g. OTT Partners 2027",
+      "brandLabel": "Brand",
+      "submit": "Create folder"
+    },
+    "share": {
+      "title": "Share document",
+      "description": "Create a public presentation link to send to partners.",
+      "documentLabel": "Document",
+      "linkLabel": "Public link",
+      "enable": "Enable public link",
+      "enableHint": "When enabled, the document becomes public to anyone with the link.",
+      "allowDownload": "Allow downloads",
+      "password": "Link password",
+      "passwordPlaceholder": "Leave empty for no password",
+      "passwordSet": "A password is set. Enter a new one to replace it, or remove it.",
+      "removePassword": "Remove password",
+      "expiry": "Expires on",
+      "noExpiry": "Never expires",
+      "save": "Save settings",
+      "preview": "View share page",
+      "views": "{count, plural, one {# view} other {# views}}",
+      "pickDocument": "Choose a document to share",
+      "noPermission": "You don't have permission to share this document.",
+      "loading": "Loading settings…"
+    }
+  },
+  "validation": {
+    "required": "This field is required.",
+    "titleMin": "Title must be at least {min} characters.",
+    "titleMax": "Title must be at most {max} characters.",
+    "fileRequired": "Please select a file.",
+    "fileTooLarge": "File exceeds 200 MB.",
+    "email": "Invalid email address.",
+    "url": "Invalid URL.",
+    "nameMin": "Name must be at least {min} characters.",
+    "passwordMin": "Password must be at least {min} characters."
+  },
+  "detail": {
+    "details": "Details",
+    "owner": "Owner",
+    "brand": "Brand",
+    "created": "Created",
+    "updated": "Updated",
+    "size": "Size",
+    "pages": "Pages",
+    "tags": "Tags",
+    "preview": "Preview",
+    "noPreview": "In-browser preview isn't supported for {type} files yet.",
+    "noPreviewHint": "Download it to open in a suitable app.",
+    "pdfFallback": "Your browser can't display this PDF.",
+    "openExternal": "Open link",
+    "externalHint": "This document links to external content.",
+    "openInNewTab": "Open in new tab",
+    "versions": "Version history",
+    "current": "Current",
+    "noVersions": "No version history yet.",
+    "related": "Related documents",
+    "noRelated": "No related documents yet.",
+    "notFoundTitle": "Document not found",
+    "notFoundDescription": "The document may have been deleted, or you don't have access to it.",
+    "backToDocuments": "Back to documents"
+  },
+  "publicShare": {
+    "presentedBy": "Presented by {name}",
+    "updated": "Updated {date}",
+    "download": "Download document",
+    "downloadDisabled": "The owner has disabled downloads",
+    "contact": "Partner with us",
+    "footerTagline": "Content production, media and short-form drama.",
+    "rights": "© {year} TRIỆU HỶ MEDIA. All rights reserved.",
+    "notFoundTitle": "Link unavailable",
+    "notFoundDescription": "This share link doesn't exist, has expired, or the document is no longer public.",
+    "goHome": "Go to homepage",
+    "taxId": "Tax ID"
+  },
+  "team": {
+    "title": "Members",
+    "description": "Manage members, invitations, roles and document ownership.",
+    "invite": "Invite member",
+    "tabs": {
+      "members": "Members",
+      "invitations": "Invitations",
+      "roles": "Roles & permissions"
+    },
+    "columns": {
+      "member": "Member",
+      "role": "Role",
+      "status": "Status",
+      "documents": "Owned documents",
+      "lastActive": "Last active",
+      "actions": "Actions"
+    },
+    "changeRole": "Change role",
+    "remove": "Remove from workspace",
+    "resend": "Resend invitation",
+    "revoke": "Revoke",
+    "noInvitations": "No pending invitations.",
+    "roleChanged": "Changed {name}'s role to {role}",
+    "removed": "Removed {name} from the workspace",
+    "inviteSent": "Invitation created for {email}. Email delivery will be available once a mail server is configured.",
+    "inviteResent": "Resending invitation emails will be available once a mail server is configured.",
+    "inviteRevoked": "Revoked invitation for {email}",
+    "inviteTitle": "Invite member",
+    "inviteDescription": "Invitees will receive an email to join the workspace.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "name@company.com",
+    "roleLabel": "Role",
+    "nameLabel": "Full name",
+    "sendInvite": "Send invitation",
+    "permission": "Permission",
+    "permissions": {
+      "view": "View documents",
+      "download": "Download",
+      "edit": "Create & edit",
+      "share": "Share publicly",
+      "delete": "Delete documents",
+      "members": "Manage members",
+      "settings": "Workspace settings"
+    },
+    "securityNotice": "Permissions are checked on the server for every action; hidden buttons are only for a cleaner interface.",
+    "createAccount": "Create account",
+    "createTitle": "Create employee account",
+    "createDescription": "The employee signs in with this email and temporary password, then must change the password.",
+    "titleLabel": "Job title",
+    "tempPassword": "Temporary password",
+    "generate": "Generate",
+    "copy": "Copy",
+    "copied": "Password copied",
+    "created": "Account created for {email}. Send the email and temporary password to the employee.",
+    "resetPassword": "Reset password",
+    "resetTitle": "Reset password for {name}",
+    "resetDescription": "The employee signs in with this temporary password and must change it right away.",
+    "resetDone": "Password reset for {name}",
+    "submitCreate": "Create account",
+    "submitReset": "Reset"
+  },
+  "activity": {
+    "title": "Activity log",
+    "description": "See who did what with documents in this workspace.",
+    "filterAll": "All activity",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "earlier": "Earlier",
+    "empty": "No activity yet.",
+    "verbs": {
+      "created": "created",
+      "updated": "updated",
+      "shared": "shared",
+      "downloaded": "downloaded",
+      "renamed": "renamed",
+      "deleted": "deleted",
+      "commented": "commented on",
+      "invited": "invited"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Customize your workspace, appearance, language and security.",
+    "sections": {
+      "general": "General",
+      "appearance": "Appearance",
+      "language": "Language",
+      "members": "Members",
+      "security": "Security",
+      "branding": "Branding"
+    },
+    "saved": "Appearance saved on this device",
+    "general": {
+      "title": "Workspace details",
+      "description": "Name and company details shown in the portal and on share pages.",
+      "workspaceName": "Workspace name",
+      "companyName": "Company name",
+      "companyInfo": "About the company",
+      "website": "Website",
+      "logo": "Workspace logo",
+      "logoHint": "SVG or PNG with a transparent background, at least 256×256.",
+      "uploadLogo": "Upload logo",
+      "logoUnavailable": "Logo upload will be available once backend file storage is in place."
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Choose light, dark or system appearance. Your choice is saved on this device."
+    },
+    "language": {
+      "title": "Language",
+      "description": "Display language for the entire interface. Document titles and content stay unchanged."
+    },
+    "members": {
+      "title": "Members & roles",
+      "description": "Invite people, change roles and manage document ownership.",
+      "manage": "Manage members",
+      "summary": "{count, plural, one {# member} other {# members}} in the workspace"
+    },
+    "security": {
+      "title": "Security",
+      "description": "Sessions, sharing defaults and permission settings.",
+      "session": "Session timeout",
+      "session8h": "8 hours",
+      "session24h": "24 hours",
+      "session7d": "7 days",
+      "defaultVisibility": "Default visibility for new documents",
+      "allowDownload": "Allow downloads on new links",
+      "linkExpiry": "Public links expire after 30 days",
+      "guestDownload": "External guests can download",
+      "editorsShare": "Editors can share publicly",
+      "backendNotice": "Sessions, view/edit/delete permissions and share links are now enforced by the server. The defaults below will be saved in a later release."
+    },
+    "branding": {
+      "title": "Branding",
+      "description": "Logo, accent color and footer for public share pages.",
+      "accent": "Accent color",
+      "accentHint": "Applied to buttons, links and highlights.",
+      "footer": "Public document footer",
+      "preview": "Preview"
+    },
+    "notPersisted": "Saving workspace settings to the server is coming in a later release."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "home": "Back to Overview"
+  },
+  "reader": {
+    "loading": "Loading document…",
+    "error": "This document can't be opened in the browser.",
+    "openInNewTab": "Open in new tab",
+    "page": "Page {current} / {total}",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "fitWidth": "Fit width",
+    "sheet": "Sheets",
+    "rowsTruncated": "Showing the first {count} rows only.",
+    "convertedFromPptx": "This preview is a PDF converted from the PowerPoint file."
+  },
+  "errors": {
+    "forbidden": "You don't have permission to do this.",
+    "not_found": "Not found. It may have been deleted.",
+    "bad_request": "The submitted data is invalid.",
+    "conflict": "This email is already in the workspace.",
+    "server_error": "Something went wrong on the server. Please try again.",
+    "network": "Can't reach the server. Check your connection and try again.",
+    "unauthorized": "Your session has expired.",
+    "loadFailed": "Couldn't load data.",
+    "retry": "Retry"
+  },
+  "login": {
+    "title": "Sign in",
+    "subtitle": "Sign in to the Triệu Hỷ Media document workspace.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "invalid": "Incorrect email or password.",
+    "welcome": "Welcome back"
+  },
+  "publicLock": {
+    "title": "Protected document",
+    "description": "Enter the password provided by the sender to view this document.",
+    "password": "Password",
+    "submit": "Open document",
+    "wrong": "Incorrect password."
+  },
+  "account": {
+    "title": "Change password",
+    "description": "Enter your current password and choose a new one.",
+    "firstLogin": "Hi {name}, this is your first sign-in. Please change the temporary password from your administrator before continuing.",
+    "current": "Current password",
+    "tempPassword": "Temporary password",
+    "new": "New password",
+    "confirm": "Confirm new password",
+    "submit": "Change password",
+    "success": "Password changed",
+    "mismatch": "Passwords don't match.",
+    "samePassword": "The new password must differ from the current one.",
+    "wrongCurrent": "Current password is incorrect.",
+    "failed": "Couldn't change the password. Please try again."
+  }
+}
