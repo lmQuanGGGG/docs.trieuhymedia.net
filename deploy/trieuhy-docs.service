@@ -1,0 +1,22 @@
+[Unit]
+Description=Triệu Hỷ Media Docs (Next.js)
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=docsapp
+Group=docsapp
+WorkingDirectory=/opt/trieuhymedia-docs/app/current
+EnvironmentFile=/opt/trieuhymedia-docs/shared/.env
+ExecStart=/opt/node/bin/node node_modules/next/dist/bin/next start -H 127.0.0.1 -p 3100
+Restart=always
+RestartSec=3
+# Hạn chế quyền: chỉ được ghi vào kho tệp
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/trieuhymedia-docs/storage
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
