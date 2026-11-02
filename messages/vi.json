@@ -360,7 +360,16 @@
     "noRelated": "Chưa có tài liệu liên quan.",
     "notFoundTitle": "Không tìm thấy tài liệu",
     "notFoundDescription": "Tài liệu có thể đã bị xoá hoặc bạn không có quyền truy cập.",
-    "backToDocuments": "Về danh sách tài liệu"
+    "backToDocuments": "Về danh sách tài liệu",
+    "variants": "Bản ngôn ngữ",
+    "variantsHint": "Người xem sẽ thấy bản khớp ngôn ngữ họ chọn trên web; chưa có thì hiện bản gốc.",
+    "originalFile": "Bản gốc",
+    "noVariant": "Chưa có",
+    "addVariant": "Thêm",
+    "replaceVariant": "Thay bản {lang}",
+    "removeVariant": "Xoá bản {lang}",
+    "variantUploaded": "Đã thêm bản {lang}",
+    "variantRemoved": "Đã xoá bản {lang}"
   },
   "publicShare": {
     "presentedBy": "Trình bày bởi {name}",
@@ -532,7 +541,9 @@
     "fitWidth": "Vừa khung",
     "sheet": "Trang tính",
     "rowsTruncated": "Chỉ hiển thị {count} dòng đầu tiên.",
-    "convertedFromPptx": "Bản xem trực tiếp được chuyển từ tệp PowerPoint sang PDF."
+    "convertedFromPptx": "Bản xem trực tiếp được chuyển từ tệp PowerPoint sang PDF.",
+    "languages": "Ngôn ngữ của tài liệu",
+    "original": "bản gốc"
   },
   "errors": {
     "forbidden": "Bạn không có quyền thực hiện thao tác này.",

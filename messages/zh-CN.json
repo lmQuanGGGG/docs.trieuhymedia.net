@@ -360,7 +360,16 @@
     "noRelated": "暂无相关文档。",
     "notFoundTitle": "未找到文档",
     "notFoundDescription": "该文档可能已被删除，或你没有访问权限。",
-    "backToDocuments": "返回文档列表"
+    "backToDocuments": "返回文档列表",
+    "variants": "语言版本",
+    "variantsHint": "访问者将看到与其所选语言一致的版本；若没有，则显示原版。",
+    "originalFile": "原版",
+    "noVariant": "暂无",
+    "addVariant": "添加",
+    "replaceVariant": "替换{lang}版本",
+    "removeVariant": "删除{lang}版本",
+    "variantUploaded": "已添加{lang}版本",
+    "variantRemoved": "已删除{lang}版本"
   },
   "publicShare": {
     "presentedBy": "由 {name} 呈现",
@@ -532,7 +541,9 @@
     "fitWidth": "适应宽度",
     "sheet": "工作表",
     "rowsTruncated": "仅显示前 {count} 行。",
-    "convertedFromPptx": "此预览为由 PowerPoint 文件转换的 PDF。"
+    "convertedFromPptx": "此预览为由 PowerPoint 文件转换的 PDF。",
+    "languages": "文档语言",
+    "original": "原版"
   },
   "errors": {
     "forbidden": "你没有执行此操作的权限。",

@@ -71,6 +71,14 @@ export const httpApi: DocsApi = {
   markNotificationsRead: async () => {
     await request("/api/notifications/read", { method: "POST" });
   },
+  uploadVariant: (documentId, locale, file) => {
+    const form = new FormData();
+    form.set("file", file);
+    form.set("locale", locale);
+    return request(`/api/documents/${documentId}/variants`, { method: "POST", body: form });
+  },
+  deleteVariant: (documentId, locale) =>
+    request(`/api/documents/${documentId}/variants/${encodeURIComponent(locale)}`, { method: "DELETE" }),
   getShare: (documentId) => request(`/api/documents/${documentId}/share`),
   updateShare: (documentId, input) => request(`/api/documents/${documentId}/share`, { method: "PUT", json: input }),
   login: async (email, password) => {

@@ -360,7 +360,16 @@
     "noRelated": "No related documents yet.",
     "notFoundTitle": "Document not found",
     "notFoundDescription": "The document may have been deleted, or you don't have access to it.",
-    "backToDocuments": "Back to documents"
+    "backToDocuments": "Back to documents",
+    "variants": "Language versions",
+    "variantsHint": "Viewers see the version matching the language they choose; otherwise the original is shown.",
+    "originalFile": "Original",
+    "noVariant": "Not added",
+    "addVariant": "Add",
+    "replaceVariant": "Replace {lang} version",
+    "removeVariant": "Remove {lang} version",
+    "variantUploaded": "{lang} version added",
+    "variantRemoved": "{lang} version removed"
   },
   "publicShare": {
     "presentedBy": "Presented by {name}",
@@ -532,7 +541,9 @@
     "fitWidth": "Fit width",
     "sheet": "Sheets",
     "rowsTruncated": "Showing the first {count} rows only.",
-    "convertedFromPptx": "This preview is a PDF converted from the PowerPoint file."
+    "convertedFromPptx": "This preview is a PDF converted from the PowerPoint file.",
+    "languages": "Document language",
+    "original": "original"
   },
   "errors": {
     "forbidden": "You don't have permission to do this.",

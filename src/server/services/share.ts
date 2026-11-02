@@ -10,7 +10,7 @@ import { initialsOf, roleToDto } from "@/server/mappers";
 import { assert, canShare } from "@/server/permissions";
 import type { ShareSettings } from "@/types";
 import { logActivity } from "./activity";
-import { loadDocument } from "./documents";
+import { loadDocument, pickFile } from "./documents";
 import { documentInclude, toDocumentDto } from "./serialize";
 
 export const shareCookieName = (token: string) => `thm_share_${token.replace(/[^a-zA-Z0-9_-]/g, "")}`;
@@ -170,13 +170,13 @@ export async function unlockShare(token: string, password: string): Promise<stri
 }
 
 /** Lấy khoá tệp cho người xem công khai (không ghi lượt xem) */
-export async function resolvePublicFile(token: string, unlockCookie: string | undefined, variant: "original" | "preview", download: boolean) {
+export async function resolvePublicFile(token: string, unlockCookie: string | undefined, variant: "original" | "preview", download: boolean, lang: string | null = null) {
   const result = await getPublicShare(token, unlockCookie, {}, false);
   if (result.state !== "ok") throw new ApiError("not_found");
   const link = await findLiveLink(token);
   if (!link) throw new ApiError("not_found");
   if (download && !link.allowDownload) throw new ApiError("forbidden", "download disabled");
-  const key = variant === "preview" ? link.document.previewUrl : link.document.fileUrl;
-  if (!key) throw new ApiError("not_found");
-  return { key, title: link.document.title, mime: variant === "preview" ? "application/pdf" : link.document.mimeType };
+  const picked = pickFile(link.document, lang, variant);
+  if (!picked.key) throw new ApiError("not_found");
+  return { key: picked.key, title: link.document.title + picked.suffix, mime: picked.mime };
 }

@@ -44,6 +44,8 @@ export interface DocsApi {
   setRole(memberId: string, role: Role): Promise<void>;
   removeMember(memberId: string): Promise<void>;
   markNotificationsRead(): Promise<void>;
+  uploadVariant(documentId: string, locale: string, file: File): Promise<DocumentItem>;
+  deleteVariant(documentId: string, locale: string): Promise<DocumentItem>;
   getShare(documentId: string): Promise<ShareSettings | null>;
   updateShare(documentId: string, input: ShareInput): Promise<ShareSettings>;
   login(email: string, password: string): Promise<void>;

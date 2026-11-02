@@ -142,3 +142,51 @@ export async function setStars(me: Member, ids: string[], starred: boolean): Pro
 
 /** Dùng khi cần dọn tệp của tài liệu bị xoá vĩnh viễn (chưa có UI) */
 export const purgeFiles = (id: string) => removePrefix(`documents/${id}`);
+
+export const SUPPORTED_LOCALES = ["vi", "en", "zh-CN"] as const;
+
+/** Tải lên/thay bản dịch của tài liệu cho một ngôn ngữ */
+export async function upsertVariant(me: Member, id: string, locale: string, file: File) {
+  const doc = await loadDocument(me, id);
+  assert(canEdit(me, doc));
+  if (!SUPPORTED_LOCALES.includes(locale as (typeof SUPPORTED_LOCALES)[number])) throw new ApiError("bad_request", "locale");
+  if (locale === doc.locale) throw new ApiError("bad_request", "same as original");
+  if (file.size > MAX_UPLOAD_BYTES) throw new ApiError("bad_request", "file too large");
+  const type = inferType(file.name, file.type);
+  const key = `documents/${id}/${locale}-${Date.now().toString(36)}-${safeFileName(file.name)}`;
+  await saveFile(key, new Uint8Array(await file.arrayBuffer()));
+  const sent = file.type && file.type !== "application/octet-stream" ? file.type : MIME_BY_TYPE[type];
+  const data = {
+    fileUrl: key,
+    previewUrl: type === "pdf" ? key : null,
+    sizeBytes: BigInt(file.size),
+    mimeType: sent || null,
+    createdById: me.id,
+  };
+  await db.documentVariant.upsert({
+    where: { documentId_locale: { documentId: id, locale } },
+    update: data,
+    create: { ...data, documentId: id, locale },
+  });
+  await logActivity({ actorId: me.id, action: "UPDATED", targetType: "document", targetName: doc.title, documentId: id, metadata: { variant: locale } });
+  return dto(me, await loadDocument(me, id));
+}
+
+export async function deleteVariant(me: Member, id: string, locale: string) {
+  const doc = await loadDocument(me, id);
+  assert(canEdit(me, doc));
+  await db.documentVariant.deleteMany({ where: { documentId: id, locale } });
+  return dto(me, await loadDocument(me, id));
+}
+
+/** Chọn khoá tệp theo ngôn ngữ: có bản dịch thì dùng, không thì dùng bản gốc */
+export function pickFile(
+  doc: { locale: string; fileUrl: string | null; previewUrl: string | null; mimeType: string | null; variants: { locale: string; fileUrl: string; previewUrl: string | null; mimeType: string | null }[] },
+  lang: string | null,
+  variant: "original" | "preview",
+) {
+  const v = lang && lang !== doc.locale ? doc.variants.find((x) => x.locale === lang) : undefined;
+  const src = v ?? doc;
+  const key = variant === "preview" ? src.previewUrl : src.fileUrl;
+  return { key, mime: variant === "preview" ? "application/pdf" : src.mimeType, suffix: v ? ` (${v.locale})` : "" };
+}

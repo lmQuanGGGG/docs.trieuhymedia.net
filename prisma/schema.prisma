@@ -193,9 +193,13 @@ model Document {
   /// Soft delete: khác null nghĩa là đang ở thùng rác
   deletedAt   DateTime?
 
+  /// Ngôn ngữ của tệp gốc (vi | en | zh-CN)
+  locale     String            @default("vi")
+
   folder     Folder?           @relation(fields: [folderId], references: [id], onDelete: SetNull)
   owner      Member            @relation("DocumentOwner", fields: [ownerId], references: [id], onDelete: Restrict)
   versions   DocumentVersion[]
+  variants   DocumentVariant[]
   stars      DocumentStar[]
   accesses   DocumentAccess[]
   shareLinks ShareLink[]
@@ -226,6 +230,26 @@ model DocumentVersion {
 
   @@unique([documentId, version])
   @@map("document_versions")
+}
+
+/// Bản dịch của tài liệu theo ngôn ngữ; trình đọc chọn bản khớp ngôn ngữ giao diện
+model DocumentVariant {
+  id          String   @id @default(cuid())
+  documentId  String
+  locale      String
+  fileUrl     String
+  /// Bản PDF để đọc trực tiếp (khi tệp là PDF)
+  previewUrl  String?
+  sizeBytes   BigInt
+  mimeType    String?
+  createdById String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@unique([documentId, locale])
+  @@map("document_variants")
 }
 
 model DocumentStar {

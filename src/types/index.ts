@@ -55,6 +55,14 @@ export interface DocumentVersion {
   sizeBytes: number;
 }
 
+export interface DocumentVariantInfo {
+  locale: string;
+  type: DocumentType;
+  sizeBytes: number;
+  hasPreview: boolean;
+  updatedAt: string;
+}
+
 export interface DocumentItem {
   id: string;
   title: string;
@@ -80,6 +88,10 @@ export interface DocumentItem {
   externalUrl?: string;
   versions: DocumentVersion[];
   shareToken?: string;
+  /** Ngôn ngữ của tệp gốc */
+  locale: string;
+  /** Các bản dịch đã tải lên (ngoài bản gốc) */
+  variants: DocumentVariantInfo[];
   /** Quyền của người đang đăng nhập với tài liệu này (server tính) */
   can?: { edit: boolean; delete: boolean; share: boolean };
 }

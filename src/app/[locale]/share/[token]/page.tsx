@@ -4,7 +4,7 @@ import { getFormatter, getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
-import { PublicDownloadButton, PublicPreview } from "@/components/share/public-preview";
+import { PublicDocumentProvider, PublicDownloadButton, PublicPreview } from "@/components/share/public-preview";
 import { IconTile } from "@/components/shared/icon-tile";
 import { Logo } from "@/components/shared/logo";
 import { MemberAvatar } from "@/components/shared/member-avatar";
@@ -57,6 +57,7 @@ export default async function SharePage({ params }: PageProps<"/[locale]/share/[
           (() => {
             const { document: doc, owner, allowDownload } = shared;
             return (
+              <PublicDocumentProvider document={doc}>
               <article className="grid gap-8 sm:gap-10">
                 <section className="relative">
                   <div aria-hidden className="absolute inset-x-8 -bottom-3 h-12 rounded-[28px] bg-card/60 shadow-soft" />
@@ -85,7 +86,7 @@ export default async function SharePage({ params }: PageProps<"/[locale]/share/[
                         </div>
                       </div>
                       <div className="flex shrink-0 flex-col items-start gap-2 md:items-end">
-                        <PublicDownloadButton document={doc} allowed={allowDownload} />
+                        <PublicDownloadButton allowed={allowDownload} />
                         <Button asChild variant="ghost" size="sm">
                           <a href={`mailto:${company.email}?subject=${encodeURIComponent(doc.title)}`}>
                             <Mail /> {t("publicShare.contact")}
@@ -96,9 +97,10 @@ export default async function SharePage({ params }: PageProps<"/[locale]/share/[
                   </div>
                 </section>
                 <section aria-label={t("detail.preview")}>
-                  <PublicPreview document={doc} allowDownload={allowDownload} />
+                  <PublicPreview allowDownload={allowDownload} />
                 </section>
               </article>
+              </PublicDocumentProvider>
             );
           })()
         ) : result.state === "locked" ? (

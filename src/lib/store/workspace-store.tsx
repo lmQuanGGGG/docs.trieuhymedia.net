@@ -60,6 +60,8 @@ interface WorkspaceContextValue extends WorkspaceState {
   createDocument: (form: FormData) => Promise<DocumentItem>;
   createFolder: (input: { name: string; brand: Brand }) => Promise<void>;
   setVisibility: (id: string, visibility: Visibility) => Promise<void>;
+  uploadVariant: (id: string, locale: string, file: File) => Promise<void>;
+  deleteVariant: (id: string, locale: string) => Promise<void>;
   getShare: (id: string) => Promise<ShareSettings | null>;
   updateShare: (id: string, input: ShareInput) => Promise<ShareSettings>;
   setRole: (memberId: string, role: Role) => Promise<void>;
@@ -129,6 +131,8 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
       createDocument: (form) => mutate(() => api.createDocument(form)),
       createFolder: (input) => mutate(() => api.createFolder(input)),
       setVisibility: (id, visibility) => mutate(async () => void (await api.setVisibility(id, visibility))),
+      uploadVariant: (id, locale, file) => mutate(async () => void (await api.uploadVariant(id, locale, file))),
+      deleteVariant: (id, locale) => mutate(async () => void (await api.deleteVariant(id, locale))),
       getShare: (id) => api.getShare(id),
       updateShare: (id, input) => mutate(() => api.updateShare(id, input)),
       setRole: (memberId, role) => mutate(() => api.setRole(memberId, role)),

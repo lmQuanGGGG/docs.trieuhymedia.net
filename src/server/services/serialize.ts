@@ -1,10 +1,21 @@
 import "server-only";
 import type { Prisma } from "@prisma/client";
 import { categoryToDto, statusToDto, typeToDto, visibilityToDto } from "@/server/mappers";
-import type { DocumentItem } from "@/types";
+import type { DocumentItem, DocumentType } from "@/types";
+
+function variantType(key: string, mime: string | null): DocumentType {
+  const k = key.toLowerCase();
+  if (k.endsWith(".pdf")) return "pdf";
+  if (k.endsWith(".docx") || k.endsWith(".doc")) return "docx";
+  if (k.endsWith(".pptx") || k.endsWith(".ppt")) return "pptx";
+  if (k.endsWith(".xlsx") || k.endsWith(".xls") || k.endsWith(".csv")) return "xlsx";
+  if (mime?.startsWith("image/")) return "image";
+  return "pdf";
+}
 
 export const documentInclude = {
   versions: { orderBy: { version: "desc" } },
+  variants: { orderBy: { locale: "asc" } },
   stars: { select: { memberId: true } },
   accesses: { select: { memberId: true, permission: true } },
   shareLinks: { where: { isActive: true }, select: { token: true }, take: 1, orderBy: { createdAt: "desc" } },
@@ -48,6 +59,14 @@ export function toDocumentDto(
       sizeBytes: Number(v.sizeBytes),
     })),
     shareToken: row.shareLinks[0]?.token,
+    locale: row.locale,
+    variants: row.variants.map((v) => ({
+      locale: v.locale,
+      type: variantType(v.fileUrl, v.mimeType),
+      sizeBytes: Number(v.sizeBytes),
+      hasPreview: !!v.previewUrl,
+      updatedAt: v.updatedAt.toISOString(),
+    })),
     can,
   };
 }

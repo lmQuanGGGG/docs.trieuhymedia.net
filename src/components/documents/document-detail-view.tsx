@@ -2,7 +2,7 @@
 
 import { ArrowLeft, Download, Share2, Star } from "lucide-react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/shared/empty-state";
@@ -15,6 +15,9 @@ import { StatusBadge, VisibilityLabel } from "./badges";
 import { DocumentCard } from "./document-card";
 import { DocumentActionsMenu } from "./document-menu";
 import { DocumentReader } from "@/components/reader/document-reader";
+import { LanguageSwitch } from "@/components/reader/language-switch";
+import { availableLocales, defaultLocaleFor, documentForLocale } from "@/lib/doc-url";
+import { VariantsPanel } from "./variants-panel";
 import { FileTypeIcon } from "./file-type-icon";
 import { useDocumentActions } from "./use-document-actions";
 
@@ -34,6 +37,7 @@ export function DocumentDetailView({ id }: { id: string }) {
   const { getDocument, getMember, documents, status } = useWorkspace();
   const actions = useDocumentActions();
   const doc = getDocument(id);
+  const [chosenLang, setLang] = useState<string | null>(null);
 
   if (status === "loading") {
     return (
@@ -73,6 +77,31 @@ export function DocumentDetailView({ id }: { id: string }) {
   }
 
   const owner = getMember(doc.ownerId);
+  const langs = availableLocales(doc);
+  const lang = chosenLang && langs.includes(chosenLang) ? chosenLang : defaultLocaleFor(doc, locale);
+  const view = documentForLocale(doc, lang);
+  const actionBar = (
+    <div className="flex items-center gap-2">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => void actions.toggleStar(doc)}
+        aria-pressed={doc.starred}
+        aria-label={doc.starred ? t("documents.actions.unstar") : t("documents.actions.star")}
+      >
+        <Star className={cn(doc.starred && "fill-warning text-warning")} />
+      </Button>
+      <Button variant="secondary" className="flex-1" onClick={() => actions.download(view)}>
+        <Download /> {t("common.download")}
+      </Button>
+      {doc.can?.share ? (
+        <Button className="flex-1" onClick={() => actions.share(doc)}>
+          <Share2 /> {t("common.share")}
+        </Button>
+      ) : null}
+      <DocumentActionsMenu document={doc} />
+    </div>
+  );
   const related = documents
     .filter((d) => d.id !== doc.id && (d.category === doc.category || d.brand === doc.brand))
     .slice(0, 4);
@@ -95,37 +124,21 @@ export function DocumentDetailView({ id }: { id: string }) {
             </div>
           </div>
         </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => void actions.toggleStar(doc)}
-            aria-pressed={doc.starred}
-            aria-label={doc.starred ? t("documents.actions.unstar") : t("documents.actions.star")}
-          >
-            <Star className={cn(doc.starred && "fill-warning text-warning")} />
-          </Button>
-          <Button variant="secondary" onClick={() => actions.download(doc)}>
-            <Download /> <span className="hidden sm:inline">{t("common.download")}</span>
-          </Button>
-          {doc.can?.share ? (
-            <Button onClick={() => actions.share(doc)}>
-              <Share2 /> {t("common.share")}
-            </Button>
-          ) : null}
-          <DocumentActionsMenu document={doc} />
-        </div>
+        {/* Màn nhỏ: nhóm nút ở đầu trang; màn lớn: nằm trong panel bên phải (dính khi cuộn) */}
+        <div className="lg:hidden">{actionBar}</div>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
         {/* Xem trước */}
         <section aria-label={t("detail.preview")} className="min-w-0">
           {doc.description ? <p className="mb-5 max-w-3xl text-[15px] leading-relaxed text-muted-foreground text-pretty">{doc.description}</p> : null}
-          <DocumentReader document={doc} onDownload={() => actions.download(doc)} />
+          <LanguageSwitch locales={langs} original={doc.locale} value={lang} onChange={setLang} />
+          <DocumentReader key={lang} document={view} onDownload={() => actions.download(view)} />
         </section>
 
         {/* Panel thông tin */}
-        <aside className="grid gap-4 lg:sticky lg:top-20">
+        <aside className="grid gap-4 lg:sticky lg:top-20 lg:max-h-[calc(100dvh-6rem)] lg:overflow-y-auto lg:pb-1">
+          <section className="surface hidden p-3 lg:block">{actionBar}</section>
           <section className="surface p-5">
             <h2 className="mb-1 text-sm font-semibold">{t("detail.details")}</h2>
             <dl>
@@ -156,6 +169,8 @@ export function DocumentDetailView({ id }: { id: string }) {
               ) : null}
             </dl>
           </section>
+
+          <VariantsPanel document={doc} />
 
           <section className="surface p-5">
             <h2 className="mb-3 text-sm font-semibold">{t("detail.versions")}</h2>
