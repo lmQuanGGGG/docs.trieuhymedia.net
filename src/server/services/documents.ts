@@ -2,10 +2,10 @@ import "server-only";
 import type { Member } from "@prisma/client";
 import { db } from "@/server/db";
 import { ApiError } from "@/server/http";
-import { categoryFromDto, typeFromDto, visibilityFromDto } from "@/server/mappers";
+import { categoryFromDto, statusFromDto, typeFromDto, visibilityFromDto } from "@/server/mappers";
 import { assert, canCreate, canDelete, canEdit, canShare, canView } from "@/server/permissions";
 import { removePrefix, safeFileName, saveFile, saveStream } from "@/server/storage";
-import type { Brand, CategorySlug, DocumentType, Visibility } from "@/types";
+import type { Brand, CategorySlug, DocumentStatus, DocumentType, Visibility } from "@/types";
 import { logActivity } from "./activity";
 import { documentInclude, toDocumentDto } from "./serialize";
 
@@ -146,7 +146,7 @@ export async function createDocumentFromStream(
 export async function updateDocument(
   me: Member,
   id: string,
-  patch: { title?: string; visibility?: Visibility },
+  patch: { title?: string; visibility?: Visibility; status?: DocumentStatus },
 ) {
   const doc = await loadDocument(me, id);
   assert(canEdit(me, doc));
@@ -157,6 +157,7 @@ export async function updateDocument(
     data: {
       title: patch.title,
       visibility: patch.visibility ? visibilityFromDto[patch.visibility] : undefined,
+      status: patch.status ? statusFromDto[patch.status] : undefined,
     },
   });
   if (patch.title && patch.title !== doc.title) {

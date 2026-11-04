@@ -375,7 +375,8 @@
     "replaceVariant": "Thay bản {lang}",
     "removeVariant": "Xoá bản {lang}",
     "variantUploaded": "Đã thêm bản {lang}",
-    "variantRemoved": "Đã xoá bản {lang}"
+    "variantRemoved": "Đã xoá bản {lang}",
+    "statusUpdated": "Đã chuyển sang “{status}”"
   },
   "publicShare": {
     "presentedBy": "Trình bày bởi {name}",

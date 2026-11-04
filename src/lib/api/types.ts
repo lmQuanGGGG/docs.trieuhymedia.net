@@ -4,6 +4,7 @@ import type {
   ShareCollectionItem,
   Brand,
   DocumentItem,
+  DocumentStatus,
   Folder,
   Member,
   NotificationItem,
@@ -50,6 +51,7 @@ export interface DocsApi {
   setStar(ids: string[], starred: boolean): Promise<void>;
   rename(id: string, title: string): Promise<DocumentItem>;
   setVisibility(id: string, visibility: Visibility): Promise<DocumentItem>;
+  setStatus(id: string, status: DocumentStatus): Promise<DocumentItem>;
   remove(ids: string[]): Promise<number>;
   createDocument(form: FormData): Promise<DocumentItem>;
   /** Upload stream (tới 2GB), báo % tiến trình */

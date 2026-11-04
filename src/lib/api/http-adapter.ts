@@ -49,6 +49,7 @@ export const httpApi: DocsApi = {
   },
   rename: (id, title) => request(`/api/documents/${id}`, { method: "PATCH", json: { title } }),
   setVisibility: (id, visibility) => request(`/api/documents/${id}`, { method: "PATCH", json: { visibility } }),
+  setStatus: (id, status) => request(`/api/documents/${id}`, { method: "PATCH", json: { status } }),
   remove: async (ids) => (await request<{ deleted: number }>("/api/documents/delete", { method: "POST", json: { ids } })).deleted,
   createDocument: (form) => request("/api/documents", { method: "POST", body: form }),
   uploadDocument: (file, meta, onProgress) =>

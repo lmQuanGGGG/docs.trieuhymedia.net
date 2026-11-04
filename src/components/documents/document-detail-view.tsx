@@ -17,6 +17,7 @@ import { DocumentActionsMenu } from "./document-menu";
 import { DocumentReader } from "@/components/reader/document-reader";
 import { LanguageSwitch } from "@/components/reader/language-switch";
 import { availableLocales, defaultLocaleFor, documentForLocale } from "@/lib/doc-url";
+import { StatusSelect } from "./status-select";
 import { VariantsPanel } from "./variants-panel";
 import { FileTypeIcon } from "./file-type-icon";
 import { useDocumentActions } from "./use-document-actions";
@@ -147,6 +148,9 @@ export function DocumentDetailView({ id }: { id: string }) {
                   <MemberAvatar member={owner} size="xs" />
                   <span className="truncate">{owner?.name}</span>
                 </span>
+              </InfoRow>
+              <InfoRow label={t("documents.columns.status")}>
+                <StatusSelect document={doc} />
               </InfoRow>
               <InfoRow label={t("documents.columns.visibility")}>
                 <VisibilityLabel visibility={doc.visibility} className="text-foreground" />

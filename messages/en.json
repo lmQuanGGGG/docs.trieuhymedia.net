@@ -375,7 +375,8 @@
     "replaceVariant": "Replace {lang} version",
     "removeVariant": "Remove {lang} version",
     "variantUploaded": "{lang} version added",
-    "variantRemoved": "{lang} version removed"
+    "variantRemoved": "{lang} version removed",
+    "statusUpdated": "Status changed to “{status}”"
   },
   "publicShare": {
     "presentedBy": "Presented by {name}",

@@ -10,7 +10,7 @@ import {
   useReducer,
 } from "react";
 import { api, type ShareInput, type WorkspaceSnapshot } from "@/lib/api";
-import type { Brand, DocumentItem, Member, Role, ShareSettings, Visibility } from "@/types";
+import type { Brand, DocumentItem, DocumentStatus, Member, Role, ShareSettings, Visibility } from "@/types";
 
 interface WorkspaceState extends WorkspaceSnapshot {
   status: "loading" | "ready" | "error";
@@ -65,6 +65,7 @@ interface WorkspaceContextValue extends WorkspaceState {
   ) => Promise<DocumentItem>;
   createFolder: (input: { name: string; brand: Brand }) => Promise<void>;
   setVisibility: (id: string, visibility: Visibility) => Promise<void>;
+  setStatus: (id: string, status: DocumentStatus) => Promise<void>;
   uploadVariant: (id: string, locale: string, file: File) => Promise<void>;
   deleteVariant: (id: string, locale: string) => Promise<void>;
   getShare: (id: string) => Promise<ShareSettings | null>;
@@ -137,6 +138,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
       uploadDocument: (file, meta, onProgress) => mutate(() => api.uploadDocument(file, meta, onProgress)),
       createFolder: (input) => mutate(() => api.createFolder(input)),
       setVisibility: (id, visibility) => mutate(async () => void (await api.setVisibility(id, visibility))),
+      setStatus: (id, status) => mutate(async () => void (await api.setStatus(id, status))),
       uploadVariant: (id, locale, file) => mutate(async () => void (await api.uploadVariant(id, locale, file))),
       deleteVariant: (id, locale) => mutate(async () => void (await api.deleteVariant(id, locale))),
       getShare: (id) => api.getShare(id),

@@ -375,7 +375,8 @@
     "replaceVariant": "替换{lang}版本",
     "removeVariant": "删除{lang}版本",
     "variantUploaded": "已添加{lang}版本",
-    "variantRemoved": "已删除{lang}版本"
+    "variantRemoved": "已删除{lang}版本",
+    "statusUpdated": "状态已改为“{status}”"
   },
   "publicShare": {
     "presentedBy": "由 {name} 呈现",

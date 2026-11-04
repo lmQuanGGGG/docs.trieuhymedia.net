@@ -1,14 +1,14 @@
 import "server-only";
 import { z } from "zod";
-import { brands, categorySlugs, documentTypes, roles, visibilities } from "@/types";
+import { brands, categorySlugs, documentStatuses, documentTypes, roles, visibilities } from "@/types";
 
 export const loginBody = z.object({ email: z.email(), password: z.string().min(1).max(200) });
 export const idsBody = z.object({ ids: z.array(z.string().min(1)).min(1).max(200) });
 export const starBody = idsBody.extend({ starred: z.boolean() });
 export const titleField = z.string().trim().min(3).max(120);
 export const updateDocumentBody = z
-  .object({ title: titleField.optional(), visibility: z.enum(visibilities).optional() })
-  .refine((v) => v.title !== undefined || v.visibility !== undefined);
+  .object({ title: titleField.optional(), visibility: z.enum(visibilities).optional(), status: z.enum(documentStatuses).optional() })
+  .refine((v) => v.title !== undefined || v.visibility !== undefined || v.status !== undefined);
 export const createDocumentFields = z.object({
   title: titleField,
   category: z.enum(categorySlugs),
